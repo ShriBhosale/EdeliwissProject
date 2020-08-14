@@ -81,7 +81,7 @@ public class FunctionKeyword {
 		 browserLunch = new BrowserLaunch();
 		driver = browserLunch.browserLaunch("Normal");
 		login = new LoginPage(driver);
-		orderActioObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
+		//orderActioObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
 		testDataObject = new TestDataModel();
 		helperObject = new HelperCode();
 		loginMap=new HashMap<String,ArrayList<String>>();
