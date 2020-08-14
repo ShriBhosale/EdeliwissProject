@@ -81,7 +81,7 @@ public class FunctionKeyword {
 		 browserLunch = new BrowserLaunch();
 		driver = browserLunch.browserLaunch("Normal");
 		login = new LoginPage(driver);
-		orderActioObj = new OrderAction(driver);
+		orderActioObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
 		testDataObject = new TestDataModel();
 		helperObject = new HelperCode();
 		loginMap=new HashMap<String,ArrayList<String>>();
@@ -169,7 +169,7 @@ public class FunctionKeyword {
 				break;
 
 			case "orderdetail":
-				OrderAction orderActionObj = new OrderAction(driver);
+				OrderAction orderActionObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
 				Reporter.log("Order detail functionality", true);
 				if(skipScenario==false)
 				//orderActionObj.orderActionStart(loginModelObj);

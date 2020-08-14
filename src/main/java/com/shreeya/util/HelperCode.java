@@ -150,7 +150,7 @@ public class HelperCode {
 		//Reporter.log("noRowInTestData : "+noRowInTestData+"\n folderPathArray[0] : "+folderPathArray[0]);
 		if(executionCount==1) {
 			CsvReaderCode reader=new CsvReaderCode();
-			noRowInTestData1=reader.noRowInTestData();
+		//	noRowInTestData1=reader.noRowInTestData();
 			FolderStructure folderStructureObject=new FolderStructure();
 			folderStructureObject.copyFile(folderPathArray[0],"ScenarioData");
 		 //excelWriter=new ApacheCode(folderPathArray[0]);

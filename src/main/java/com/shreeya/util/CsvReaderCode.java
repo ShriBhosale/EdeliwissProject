@@ -48,7 +48,7 @@ public class CsvReaderCode {
 		return new CSVWriter(outputfile);
 	}
 
-	public Iterator<TestDataModel> testDataProvider() {
+	public TestDataModel testDataProvider(String loginReferNo) {
 		ConfigReader configReader=new ConfigReader();
 		String testDataPath=configReader.configReader("TestData")+"\\ScenarioData";
 		CSVReader reader = null;
@@ -64,23 +64,24 @@ public class CsvReaderCode {
 
 		Iterator<TestDataModel> csvTestDataModelIterator = csvToBean.iterator();
 		
-		
-		return csvTestDataModelIterator;
-	}
-	
-	
-	public int noRowInTestData() {
-		System.out.println("****************************************Number no counting start***************************************************");
-		TestDataModel m1;
-		int i=0;
-		Iterator<TestDataModel> csvTestDataModelIterator=testDataProvider();
-		while (csvTestDataModelIterator.hasNext()) {
-			m1=csvTestDataModelIterator.next();
-			i++;
+		while(csvTestDataModelIterator.hasNext()) {
+			TestDataModel testDataModel=csvTestDataModelIterator.next();
+			if(testDataModel.getOrderNo().equalsIgnoreCase(loginReferNo)) return testDataModel;
 		}
-		
-		return i;
+		return null;
 	}
+	
+	//Order Detail FrameWork it it neccessary
+	/*
+	 * public int noRowInTestData(String loginReferNo) { System.out.
+	 * println("****************************************Number no counting start***************************************************"
+	 * ); TestDataModel m1; int i=0; Iterator<TestDataModel>
+	 * csvTestDataModelIterator=testDataProvider(); while
+	 * (csvTestDataModelIterator.hasNext()) { m1=csvTestDataModelIterator.next();
+	 * i++; }
+	 * 
+	 * return i; }
+	 */
 
 	public void WriteFile(String[] orderDetailArray,CSVWriter writer) {
 
@@ -95,7 +96,7 @@ public class CsvReaderCode {
 	public static void main(String[] args) throws IllegalStateException, InstantiationException, IllegalAccessException,
 			CsvRequiredFieldEmptyException, IOException {
 		CsvReaderCode coder = new CsvReaderCode();
-		System.out.println("No of rows = "+coder.noRowInTestData());
+		
 	}
 
 	private static void While(boolean hasNext) {

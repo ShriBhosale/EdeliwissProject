@@ -40,7 +40,7 @@ public class Execution {
 		BrowserLaunch launch=new BrowserLaunch();
 		driver=launch.browserLaunch("Normal");
 		login=new LoginPage(driver);
-		orderActioObj=new OrderAction(driver);
+		orderActioObj=new OrderAction(driver,"1");
 		testDataObject=new TestDataModel();
 		helperObject=new HelperCode();
 		
