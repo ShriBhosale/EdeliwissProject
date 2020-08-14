@@ -120,6 +120,7 @@ public class Help extends SeleniumCoder{
 		  return screenshotPath;
 	}
 
+
 	public String removeHtmlCode(String ltp) {
 		String [] htmlSpliter=ltp.split(">");
 		String [] ltpArray=htmlSpliter[3].split("<");
@@ -757,4 +758,5 @@ public class Help extends SeleniumCoder{
 	}
 	
 	
+
 }

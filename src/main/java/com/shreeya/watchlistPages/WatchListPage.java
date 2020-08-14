@@ -16,6 +16,7 @@ import org.testng.Reporter;
 
 import com.shreeya.fundtransferpages.FundTransferCommon;
 import com.shreeya.model.WatchListModel;
+import com.shreeya.orderdetailpages.ModOrderPage;
 import com.shreeya.orderdetailpages.OrderDetail;
 import com.shreeya.util.ExtendReporter;
 import com.shreeya.util.Help;
@@ -46,11 +47,13 @@ public class WatchListPage extends SeleniumCoder {
 	WebElement deleleokButton;
 	WebElement orderPlaceSearchTextField;
 	WebElement closeButton;
+
 	WebElement addScriptDropDownOption;
 	WebElement createButton;
 	WebElement cancelButton;
 	
 		public static String createWatchListPath;
+
 	public static String deleteWatchListPath;
 	public static List<String> exchangeList;
 	public static List<String> scriptList;
@@ -604,6 +607,7 @@ public class WatchListPage extends SeleniumCoder {
 		 * " Trade button");
 		 */
 		
+
 		scriptNameArray = help.commaSeparater(model.getVerifyScript());
 		int scriptCount = scriptNameArray.length + 2;
 		for (int i = 2; i < scriptCount; i++) {
@@ -615,6 +619,7 @@ public class WatchListPage extends SeleniumCoder {
 				clickElement(tradeButton, "ScriptCheckBox");
 				break;
 			}
+
 
 		}
 			orderPlaceSearchTextField = fluentWaitCodeXpath("//input[@id='tocsearch']", "Order Place Textfield");
