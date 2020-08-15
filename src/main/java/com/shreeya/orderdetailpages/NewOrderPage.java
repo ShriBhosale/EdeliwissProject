@@ -85,6 +85,7 @@ public class NewOrderPage extends SeleniumCoder {
 		Thread.sleep(2000);
 		productType(driver, model.getProductType());
 		noOfSharesTextField=fluentWaitCodeXpath(driver,"//input[@placeholder='No. of Shares']");
+		
 		if(model.getScenario().equalsIgnoreCase("Partial Order")) {
 			clearAndSendKey(noOfSharesTextField,model.getQtyMod(),"No of shares Textfield (Mod Qty)");
 		}else

@@ -14,6 +14,7 @@ import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
 import com.shreeya.model.LoginModel;
+import com.shreeya.util.ConfigReader;
 import com.shreeya.util.CsvReaderCode;
 import com.shreeya.util.FolderStructure;
 import com.shreeya.util.Help;
@@ -30,15 +31,18 @@ public class MyTestLauncher {
 		
 		CsvReaderCode csvReader = new CsvReaderCode(); 
 		loginData =csvReader.LoginFileReader();
+		ConfigReader reader=new ConfigReader();
+		int noInstance=Integer.valueOf(reader.configReader("NumberInstance"));
 		Iterator<LoginModel> loginIteratior = loginData.iterator();
+
 		FolderStructure folderCreationObj = new FolderStructure();
 		
 		folderPath = folderCreationObj.reportFolderCreator();
-		
+
 		XmlSuite suite = new XmlSuite();
 		suite.setName("TmpSuite");
 		suite.setParallel(XmlSuite.ParallelMode.TESTS);
-		suite.setThreadCount(2);
+		suite.setThreadCount(noInstance);
 		int count=0;
 		 while(loginIteratior.hasNext()) {
 			 LoginModel loginModel = loginIteratior.next(); 
@@ -51,6 +55,7 @@ public class MyTestLauncher {
 			 testScenarioParameters.put("StartNo", loginModel.getStartingRowNo());
 			 testScenarioParameters.put("EndNo", loginModel.getEndRowNo());
 			 testScenarioParameters.put("Module", loginModel.getModule());
+			 testScenarioParameters.put("Execute", loginModel.getExecute());
 		XmlTest test = new XmlTest(suite);
 		test.setName(loginModel.getReferNo());
 		test.setParameters(testScenarioParameters);

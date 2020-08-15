@@ -3,6 +3,7 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+<<<<<<< HEAD
       <class name="com.shreeya.FunctionKeyword">
         <methods>
           <include name="beforeSuite"/>
@@ -14,6 +15,17 @@
           <include name="testAfter"/>
         </methods>
       </class> <!-- com.shreeya.FunctionKeyword -->
+=======
+      <class name="com.shreeya.Execution">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="executionBefore"/>
+          <include name="execution"/>
+          <include name="testAfter"/>
+          <include name="endExecution"/>
+        </methods>
+      </class> <!-- com.shreeya.Execution -->
+>>>>>>> paralleExecute
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

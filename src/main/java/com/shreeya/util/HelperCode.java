@@ -37,7 +37,7 @@ public class HelperCode {
 	static String outputFolderPath="Main output folder not generated in HelperCode";
 	static int executionCount=0;
 	public HelperCode() {
-
+		
 	}
 
 	public String nestIdProvider(String strForNestId) {
@@ -149,11 +149,13 @@ public class HelperCode {
 		}
 		
 		if(reportFlag) {
+
 			Reporter.log("FunctionKeyword Count :: "+rowPrint,true);
 			Reporter.log("FunctionKeyword no ===> "+executionCount,true);
+
 		//Reporter.log("Order no===========================================================> "+orderNo+"\nExecution Count==========================================>"+rowPrint);
 		//Reporter.log("noRowInTestData : "+noRowInTestData+"\n folderPathArray[0] : "+folderPathArray[0]);
-		if(executionCount==1) {
+		if(rowPrint==2) {
 			CsvReaderCode reader=new CsvReaderCode();
 			noRowInTestData1=reader.noRowInTestData();
 			FolderStructure folderStructureObject=new FolderStructure();

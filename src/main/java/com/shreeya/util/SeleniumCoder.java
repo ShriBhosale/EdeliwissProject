@@ -118,6 +118,7 @@ public class SeleniumCoder {
 			
 		element.clear();
 		element.sendKeys(msg);
+		Reporter.log(elementName+" : "+msg, true);
 		System.out.println("elementName : "+elementName+" msg : "+msg);
 		}catch(NullPointerException e) {
 			System.out.println(e);
@@ -380,7 +381,9 @@ public class SeleniumCoder {
 		 WebElement element=null;
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 			       .withTimeout(maxDelay, TimeUnit.SECONDS)
+
 			       .pollingEvery(3, TimeUnit.SECONDS)
+
 			       .ignoring(NoSuchElementException.class);
 	
 			    element = wait.until(new Function<WebDriver, WebElement>() {
@@ -400,6 +403,7 @@ public class SeleniumCoder {
 			   return element;
 		   
 	}
+
 	
 	public  WebElement fluentWaitCodeName(WebDriver driver,final String idString,int maxDelay) {
 		// Waiting 30 seconds for an element to be present on the page, checking
@@ -465,5 +469,6 @@ public class SeleniumCoder {
 		}
 		return elementFlg;
 	}
+
 	
 }

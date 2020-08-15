@@ -98,18 +98,18 @@ public class FunctionKeyword {
 		Reporter.log("BeforeMethod", true);
 	}
 
-	@Parameters({ "Reference", "UserId", "Pwd", "Yob", "StartNo", "EndNo", "Module" })
+	@Parameters({ "Reference", "UserId", "Pwd", "Yob", "StartNo", "EndNo", "Module","Execute"})
 	@Test
 	public void executionWithKeyword(String referenceNo, String userId, String pwd, String yob, String startNo,
-			String endNo, String module) throws InterruptedException, IOException {
-		
+			String endNo, String module,String execute) throws InterruptedException, IOException {
+		if(execute.equalsIgnoreCase("Yes")) {
 		CsvReaderCode code = new CsvReaderCode();
 		Reporter.log("<==================== Function KeyWord : executionWithKeyword ================>", true);
 		Reporter.log("Before Iterator " + referenceNo);
 
 		Reporter.log("After Iterator", true);
 
-		LoginModel loginModelObj = new LoginModel(referenceNo, userId, pwd, yob, startNo, endNo, module);
+		LoginModel loginModelObj = new LoginModel(referenceNo, userId, pwd, yob, startNo, endNo, module,execute);
 		Reporter.log("Login Data ====> " + loginModelObj.toString(), true);
 
 		Reporter.log("KeyWord before process  ====> " + module, true);
@@ -170,7 +170,7 @@ public class FunctionKeyword {
 
 		}
 		
-		
+		}
 
 	}
 
@@ -208,13 +208,14 @@ public class FunctionKeyword {
 	public void endExecution() throws IOException {
 		// apacheCodeObj.closeExcelWriting();
 		driver.close();
-		Reporter.log("Folder Path ====> " + MyTestLauncher.folderPath[0], true);
-		apacheCodeObj.outputExcelFileClose();
 
 	}
 
 	@AfterSuite
 	public void afterSuite() throws IOException {
+		
+		Reporter.log("Folder Path ====> " + MyTestLauncher.folderPath[0], true);
+		apacheCodeObj.outputExcelFileClose(MyTestLauncher.folderPath[0]);
 		/*
 		 * Process pro =
 		 * Runtime.getRuntime().exec("cmd.exe /k netstat -ano|findstr 5554");

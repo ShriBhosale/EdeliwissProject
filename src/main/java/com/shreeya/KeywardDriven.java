@@ -25,7 +25,7 @@ public class KeywardDriven {
 	//@Parameters({"Reference","UserId","Pwd","Yob","StartNo","EndNo","Module"})
 	@Test(enabled = true)
 	public void fundTransfterKeyword() throws InterruptedException, IOException {
-		LoginModel loginModel=new LoginModel("1","sanjay15","abc123","1985","1","2","fundtransfer");
+		LoginModel loginModel=new LoginModel("1","sanjay15","abc123","1985","1","2","fundtransfer","Yes");
 //		FundTransferExecution fundTransfer=new FundTransferExecution();
 //		fundTransfer.fundTransferExecute(loginModel);
 	}
@@ -33,7 +33,7 @@ public class KeywardDriven {
 	//@Parameters({"Reference","UserId","Pwd","Yob","StartNo","EndNo","Module"})
 	@Test(enabled = true)
 	public void seeMarginKeyword() throws InterruptedException, IOException {
-		LoginModel loginModel=new LoginModel("2","60003800","abc123","2000","1","2","seeMargin");
+		LoginModel loginModel=new LoginModel("2","60003800","abc123","2000","1","2","seeMargin","Yes");
 		/*
 		 * SeeMarginExecution seeMargin=new SeeMarginExecution();
 		 * seeMargin.seeMarginExecute(loginModel);
@@ -43,7 +43,7 @@ public class KeywardDriven {
 	
 	@Test(enabled = false)
 	public void myPositionsKeyword() throws InterruptedException, IOException {
-		LoginModel loginModel=new LoginModel("1","60003800","abc123","2000","1","2","fundtransfer");
+		LoginModel loginModel=new LoginModel("1","60003800","abc123","2000","1","2","fundtransfer","Yes");
 		/*
 		 * MyPositionsExecution myPositions=new MyPositionsExecution();
 		 * myPositions.myPositionsExecute(loginModel);

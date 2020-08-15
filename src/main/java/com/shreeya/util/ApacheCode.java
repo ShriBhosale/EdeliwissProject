@@ -30,29 +30,30 @@ public class ApacheCode {
 	static XSSFSheet sheet;
 	static Sheet outputsheet;
 	public static FileOutputStream fileOut=null;
+	public static boolean closeOutputExcel=false;
 
 	HelperCode helper=new HelperCode();
+	private String hyperLinkName;
 	public static  String ouputFilePath;
 	
 
 	public ApacheCode(String folderPathString) throws EncryptedDocumentException, IOException {
-		workbook = new XSSFWorkbook();
-		sheet = workbook.createSheet("Orders Details");
-		out = new FileOutputStream(new File(folderPathString+"/ExcelReport"+helper.timeStampGenerator()+".xlsx"),true);
-		String[] headerArray = { "Id", "Action", "Status", "Order Action", "Trading Symbol", "Product Type",
-				"Order Price", "Order Type", "User id", "Exchange", "Validity", "Nest Id","Qty","Partial Qty","Rejection Reason",
-				"ScriptResult Pass/fail", "Report link", "Screenshot link" };
-
-		Row row = sheet.createRow(0);
-		for (int i = 0; i < headerArray.length; i++) {
-
-			Cell cell = row.createCell(i);
-			cell.setCellValue(headerArray[i]);
-		}
-		
-
-		 
-	}
+		/*
+		 * workbook = new XSSFWorkbook(); sheet =
+		 * workbook.createSheet("Orders Details"); out = new FileOutputStream(new
+		 * File(folderPathString+"/ExcelReport"+helper.timeStampGenerator()+".xlsx"),
+		 * true); String[] headerArray = { "Id", "Action", "Status", "Order Action",
+		 * "Trading Symbol", "Product Type", "Order Price", "Order Type", "User id",
+		 * "Exchange", "Validity", "Nest Id","Qty","Partial Qty","Rejection Reason",
+		 * "ScriptResult Pass/fail", "Report link", "Screenshot link" };
+		 * 
+		 * Row row = sheet.createRow(0); for (int i = 0; i < headerArray.length; i++) {
+		 * 
+		 * Cell cell = row.createCell(i); cell.setCellValue(headerArray[i]); }
+		 * 
+		 * 
+		 * 
+		 */}
 	
 
 
@@ -291,12 +292,25 @@ public class ApacheCode {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 
 		 Reporter.log("Writer Order detail with link in outputExcel",true);
 		 Row row = outputsheet.getRow(rowNo);
 		 int counter=15;
+		 Reporter.log("Row no : "+rowNo, true);
+
 		 if(!orderDetailArray[1].equalsIgnoreCase("Buy Partial Order")) {
-		 String hyperLinkName = null;
+		  hyperLinkName = null;
 			
+
+		 Reporter.log("after count variable "+counter,true);
+		  hyperLinkName = null;
+		 Reporter.log("hyper link Name "+hyperLinkName,true);
+		// Reporter.log("OutputSheet object ==========>>> "+outputsheet,true);
+			//Row row1 = outputsheet.getRow(rowNo);
+			 Reporter.log("After row "+row,true);
+			if(outputsheet==null)
+				Reporter.log("Null=====================================================================$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44>>>>>>");
+
 			Reporter.log("Row Object ====> "+row+"\nOutputSheet Object ====> "+outputsheet,true);
 			for(int i=14;i<orderDetailArray.length;i++)
 			{
@@ -339,10 +353,16 @@ public class ApacheCode {
 			}
 			
 	 }
-	 public void outputExcelFileClose() throws IOException {
-			fileOut = new FileOutputStream(ouputFilePath);
+
+	 public void outputExcelFileClose(String folderPathString) throws IOException {
+		 if(closeOutputExcel==false) {
+			fileOut = new FileOutputStream(folderPathString+"/OutputFile.xlsx");
+			Reporter.log("OutputReporter file close", true);
+
 			wb.write(fileOut);
 			fileOut.close();
+			closeOutputExcel=true;
+		 }
 		}
 
 }
