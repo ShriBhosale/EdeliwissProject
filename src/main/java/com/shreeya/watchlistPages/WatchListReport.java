@@ -105,7 +105,7 @@ public class WatchListReport extends ExtendReporter {
 			int i=0;
 			for(String str:entry.getValue()) {
 				i++;
-				if(str.contains("WorkingE2")) {
+				if(str.contains("EuatReport")) {
 					test.log(Status.INFO,"screenshot : str"+test.addScreencastFromPath(str));
 				}
 				test.log(Status.INFO, str+" : "+i);

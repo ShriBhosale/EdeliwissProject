@@ -40,8 +40,9 @@ public class WatchListKeywords {
 		predWatchList.add("PredefineWatchList");
 		predWatchList.add("Verfiy_7");
 
-		predWatchList.add("PredefineWatchListTrade");
-		predWatchList.add("Verfiy_8");
+		/*
+		 * predWatchList.add("PredefineWatchListTrade"); predWatchList.add("Verfiy_8");
+		 */
 
 		if (predefineWatchList.equalsIgnoreCase("Yes")) {
 			stepsList = predWatchList;

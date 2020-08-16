@@ -22,6 +22,7 @@ public class ReportWatchlist extends ExtendReporter{
 	String [] scriptNameArray;
 	Help help;
 	int count=0;
+	String dot=".";
 	
 	public ReportWatchlist() {
 		
@@ -64,7 +65,7 @@ public class ReportWatchlist extends ExtendReporter{
 		String [] result;
 		
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("WorkingE2")) {
+			if(detailList.get(i).contains("EuatReport")) {
 				help.screenshotFullPath(detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");
@@ -88,7 +89,7 @@ public class ReportWatchlist extends ExtendReporter{
 		String [] result;
 		test.log(Status.INFO, "<b>============@@> Verify Code Page <@@============</b>");
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("WorkingE2")) {
+			if(detailList.get(i).contains("EuatReport")) {
 				help.screenshotFullPath(detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");
@@ -115,7 +116,7 @@ public class ReportWatchlist extends ExtendReporter{
 		String [] result;
 		test.log(Status.INFO, "<b>============@@> Verify duplicate watchlist <@@============</b>");
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("WorkingE2")) {
+			if(detailList.get(i).contains("EuatReport")) {
 				help.screenshotFullPath(detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");
@@ -141,7 +142,7 @@ public class ReportWatchlist extends ExtendReporter{
 		String [] result;
 		test.log(Status.INFO, "<b>============@@> Verify Script delete <@@============</b>");
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("WorkingE2")) {
+			if(detailList.get(i).contains("EuatReport")) {
 				help.screenshotFullPath(detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");
@@ -167,7 +168,7 @@ public class ReportWatchlist extends ExtendReporter{
 		String [] result;
 		test.log(Status.INFO, "<b>============@@> PredefineWatchList Trading <@@============</b>");
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("WorkingE2")) {
+			if(detailList.get(i).contains("EuatReport")) {
 				help.screenshotFullPath(detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");
@@ -201,7 +202,7 @@ public class ReportWatchlist extends ExtendReporter{
 		  
 		 
 			for(int i=1;i<detailList.size();i++) {
-				if(detailList.get(i).contains("WorkingE2")) {
+				if(detailList.get(i).contains("EuatReport")) {
 					help.screenshotFullPath(detailList.get(i),test);
 				}else {
 					if(detailList.get(i).contains("TradingSysmbol")||detailList.get(i).contains("Exchange")) {
@@ -236,8 +237,8 @@ public class ReportWatchlist extends ExtendReporter{
 		
 		
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("WorkingE2")) {
-				help.screenshotFullPath(detailList.get(i),test);
+			if(detailList.get(i).contains("report")) {
+				help.screenshotFullPath(dot+detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");
 				test.log(Status.PASS, result[0]);
@@ -362,7 +363,7 @@ public class ReportWatchlist extends ExtendReporter{
 		String [] result;
 		test.log(Status.INFO, "<b>============@@> Trading With Normal WatchList <@@============</b>");
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("WorkingE2")) {
+			if(detailList.get(i).contains("EuatReport")) {
 				help.screenshotFullPath(detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");

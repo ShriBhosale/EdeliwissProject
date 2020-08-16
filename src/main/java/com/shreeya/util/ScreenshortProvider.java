@@ -27,7 +27,8 @@ public class ScreenshortProvider extends SeleniumCoder{
 		Reporter.log("Capture Screenshot : "+moduleNameWithReferNo,true);
 		TakesScreenshot screen = (TakesScreenshot) driver;
 		File src = screen.getScreenshotAs(OutputType.FILE);
-		String dest =MyTestLauncher.reportFolderPath[2]+"/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
+		//String dest =MyTestLauncher.reportFolderPath[2]+"/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
+		String dest ="./report/Screenshort/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
 		File target = new File(dest);
 		try {
 			FileUtils.copyFile(src, target);

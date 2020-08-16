@@ -115,7 +115,7 @@ public class Help extends SeleniumCoder{
 		ConfigReader reader=new ConfigReader();
 		String path=reader.configReader("Result");
 	
-		String screenshotPath=inputPath.replace("../WorkingE2",path);
+		String screenshotPath=inputPath.replace("../EuatReport",path);
 		  screenshotPath=screenshotPath.replace("/", "//");
 		  return screenshotPath;
 	}
@@ -326,8 +326,8 @@ public class Help extends SeleniumCoder{
 		ConfigReader reader=new ConfigReader();
 		String path=reader.configReader("Result");
 	
-		 screenshotPath=screenshotPath.replace("../WorkingE2",path);
-		  screenshotPath=screenshotPath.replace("/", "//");
+		 //screenshotPath=screenshotPath.replace("../EuatReport",path);
+		  //screenshotPath=screenshotPath.replace("/", "//");
 		Reporter.log("Screenshot : "+screenshotPath, true);
 		try {
 			

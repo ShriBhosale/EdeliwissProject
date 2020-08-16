@@ -26,15 +26,17 @@ public class WatchListMainExecution extends SeleniumCoder{
 	
 	public void watchListExecute(String segment) {
 		Reporter.log("<b><font color='Yellow'>=========@@@@ WatchListExecute @@@@========</font></b>", true);
-		ExtendReporter reporter=new ExtendReporter(MyTestLauncher.reportFolderPath[1], "WatchList", 0);
-		
+		//ExtendReporter reporter=new ExtendReporter(MyTestLauncher.reportFolderPath[0], "WatchList", 0);
+		ExtendReporter reporter=new ExtendReporter("E:/EdelweissProject/DigitalWebPlatformAutomation/report", "WatchList", 0);
 
-		/*
-		 * reporter=execution.watchListExecute(reporter);
-		 * reporter=extraScenario.watchListExtraScenarioExecute(segment,reporter);
-		 * reporter=sorting.sortingScenarioExecute(segment, reporter);
-		 */
-		reporter=testcase.watchListTestcaseExecute(segment, reporter);
+		
+		  reporter=execution.watchListExecute(reporter);
+			/*
+			 * reporter=extraScenario.watchListExtraScenarioExecute(segment,reporter);
+			 * reporter=sorting.sortingScenarioExecute(segment, reporter);
+			 * 
+			 * reporter=testcase.watchListTestcaseExecute(segment, reporter);
+			 */
 
 		 reporter.logFlush();
 	}

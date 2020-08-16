@@ -93,7 +93,7 @@ public class ExtendReporter {
 			ConfigReader reader = new ConfigReader();
 			String path = reader.configReader("Result");
 
-			screenshotPath = screenshotPath.replace("../WorkingE2", path);
+			screenshotPath = screenshotPath.replace("../EuatReport", path);
 			screenshotPath = screenshotPath.replace("/", "//");
 
 			System.out.println(screenshotPath);
@@ -131,7 +131,7 @@ public class ExtendReporter {
 		ConfigReader reader = new ConfigReader();
 		String path = reader.configReader("Result");
 
-		screenshotPath = screenshotPath.replace("../WorkingE2", path);
+		screenshotPath = screenshotPath.replace("../EuatReport", path);
 		screenshotPath = screenshotPath.replace("//", "-");
 		// screenshotPath=screenshotPath.replace("-", "\");
 		System.out.println(screenshotPath);
@@ -145,7 +145,7 @@ public class ExtendReporter {
 		ConfigReader reader = new ConfigReader();
 		String path = reader.configReader("Result");
 
-		screenshotPath = screenshotPath.replace("../WorkingE2", path);
+		screenshotPath = screenshotPath.replace("../EuatReport", path);
 		screenshotPath = screenshotPath.replace("/", "//");
 		System.out.println(screenshotPath);
 		try {
@@ -252,7 +252,7 @@ public class ExtendReporter {
 	}
 
 	public void printLog(String msg) {
-		if (msg.contains("WorkingE2"))
+		if (msg.contains("EuatReport"))
 			help.screenshotFullPath(msg, test);
 		else
 			test.log(Status.INFO, msg);
@@ -280,7 +280,7 @@ public class ExtendReporter {
 				} else if (msg.contains("@@>")) {
 					Reporter.log(msg, true);
 					test.log(Status.INFO, "<b>===" + msg + "===</b>");
-				} else if (msg.contains("WorkingE2")) {
+				} else if (msg.contains("EuatReport")) {
 					help.screenshotFullPath(msg, test);
 				} else if (msg.equalsIgnoreCase("No")) {
 					continue;
