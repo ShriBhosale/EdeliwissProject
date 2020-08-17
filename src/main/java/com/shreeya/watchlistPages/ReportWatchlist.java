@@ -237,7 +237,7 @@ public class ReportWatchlist extends ExtendReporter{
 		
 		
 		for(int i=0;i<detailList.size();i++) {
-			if(detailList.get(i).contains("report")) {
+			if(detailList.get(i).contains("Watchlist")) {
 				help.screenshotFullPath(dot+detailList.get(i),test);
 			}else if(detailList.get(i).contains("PASS")) {
 				result=help.separater(detailList.get(i),"-");

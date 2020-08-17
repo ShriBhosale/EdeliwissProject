@@ -5,6 +5,7 @@ import org.testng.Reporter;
 
 import com.shreeya.MyTestLauncher;
 import com.shreeya.util.ExtendReporter;
+import com.shreeya.util.FolderStructure;
 import com.shreeya.util.SeleniumCoder;
 
 public class WatchListMainExecution extends SeleniumCoder{
@@ -14,6 +15,7 @@ public class WatchListMainExecution extends SeleniumCoder{
 	WatchListExtraScenario extraScenario;
 	WatchListSorting sorting;
 	WatchListTestcase testcase;
+	FolderStructure folderStructure;
 	
 	public WatchListMainExecution(WebDriver driver) {
 		super(driver);
@@ -22,12 +24,13 @@ public class WatchListMainExecution extends SeleniumCoder{
 		extraScenario=new WatchListExtraScenario(driver);
 		sorting=new WatchListSorting(driver);
 		testcase=new WatchListTestcase(driver);
+		folderStructure=new FolderStructure();
 	}
 	
 	public void watchListExecute(String segment) {
 		Reporter.log("<b><font color='Yellow'>=========@@@@ WatchListExecute @@@@========</font></b>", true);
 		//ExtendReporter reporter=new ExtendReporter(MyTestLauncher.reportFolderPath[0], "WatchList", 0);
-		ExtendReporter reporter=new ExtendReporter("E:/EdelweissProject/DigitalWebPlatformAutomation/report", "WatchList", 0);
+		ExtendReporter reporter=new ExtendReporter("E:/EdelweissProject/DigitalWebPlatformAutomation/Watchlist", "WatchList", 0);
 
 		
 		  reporter=execution.watchListExecute(reporter);
@@ -39,5 +42,7 @@ public class WatchListMainExecution extends SeleniumCoder{
 			 */
 
 		 reporter.logFlush();
+		folderStructure.copyFolderThenDelete("E:/EdelweissProject/DigitalWebPlatformAutomation/Watchlist", MyTestLauncher.reportFolderPath[0]);
+		 
 	}
 }

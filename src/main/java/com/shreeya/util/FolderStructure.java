@@ -15,8 +15,10 @@ public class FolderStructure {
 			"no" + "/Screenshots" };
 	ConfigReader configReader=new ConfigReader();
 	HelperCode helperObject;
+	Help help;
 	
 	public FolderStructure() {
+		help=new Help();
 		helperObject = new HelperCode();
 		timeStamp = helperObject.timeStampGenerator();
 	}
@@ -94,5 +96,19 @@ public class FolderStructure {
 		return path;
 	}
 
+	public void copyFolderThenDelete(String sourcesFolderPath,String targetFolderPath) {
+		String [] folderNameArray=help.separater(sourcesFolderPath, "/");
+		 File from = new File(sourcesFolderPath.trim());
+			File to = new File(targetFolderPath+"/"+folderNameArray[folderNameArray.length-1]);
+			try {
+				  FileUtils.copyDirectory(from, to); 
+				  FileUtils.deleteDirectory(from);
+				 
+				System.out.println("Directory moved successfully.");
+			}
+			catch (IOException ex) {
+				ex.printStackTrace();
+			}
+	}
 	
 }
