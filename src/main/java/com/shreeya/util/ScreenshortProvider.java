@@ -21,14 +21,14 @@ public class ScreenshortProvider extends SeleniumCoder{
 		
 	}
 
-	public static String captureScreen(WebDriver driver,String moduleNameWithReferNo)  {
+	public static String captureScreen(WebDriver driver,String moduleNameWithReferNo,String moduleName)  {
 		staticWaitStatic(800);
 		helperObject=new HelperCode();
 		Reporter.log("Capture Screenshot : "+moduleNameWithReferNo,true);
 		TakesScreenshot screen = (TakesScreenshot) driver;
 		File src = screen.getScreenshotAs(OutputType.FILE);
 		//String dest =MyTestLauncher.reportFolderPath[2]+"/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
-		String dest ="./Watchlist/Screenshort/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
+		String dest ="./"+moduleName+"/Screenshort/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
 		File target = new File(dest);
 		try {
 			FileUtils.copyFile(src, target);

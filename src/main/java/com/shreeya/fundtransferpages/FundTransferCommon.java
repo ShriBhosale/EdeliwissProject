@@ -222,7 +222,7 @@ public class FundTransferCommon extends SeleniumCoder {
 			maxAmountEnter=enterBigAmount("//input[@name='amt']", "Amount To Transfer TextField", amount);
 		else
 			 clearAndSendKey(amountToTransferTextField, amount, "Amount To Transfer TextField");
-		addFundforScreenshot=ScreenshortProvider.captureScreen(driver, "AddFundScreenshot");
+		addFundforScreenshot=ScreenshortProvider.captureScreen(driver, "AddFundScreenshot","FundTransfer");
 		errorMsgLabel=fluentWaitCodeXpath("//span[@ng-bind='errorAmtMessage']", "error msg");
 		if(errorMsgLabel!=null) {
 			if(errorMsgLabel.isDisplayed()) {
@@ -355,7 +355,7 @@ public class FundTransferCommon extends SeleniumCoder {
 		clickElement(okButton, "Ok button");
 		amountToTransferTextField=fluentWaitCodeName(driver, "amt", 20,"Amount To Transfer TextField");
 		clearAndSendKey(amountToTransferTextField, amount, "Amount To Transfer TextField");
-		addFundforScreenshot=ScreenshortProvider.captureScreen(driver, "AddFundScreenshot");
+		addFundforScreenshot=ScreenshortProvider.captureScreen(driver, "AddFundScreenshot","FundTransfer");
 		submitButton=fluentWaitCodeXpath(driver, "//input[@value='Submit']","submit button");
 		clickElement(submitButton, "Submit button");
 		return msg+"-"+addFundforScreenshot;

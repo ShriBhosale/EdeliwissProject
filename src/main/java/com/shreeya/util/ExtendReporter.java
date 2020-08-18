@@ -35,6 +35,7 @@ public class ExtendReporter {
 	int timestamp;
 
 	Help help;
+	private String dot=".";
 
 	public static String abc = "";
 
@@ -280,8 +281,8 @@ public class ExtendReporter {
 				} else if (msg.contains("@@>")) {
 					Reporter.log(msg, true);
 					test.log(Status.INFO, "<b>===" + msg + "===</b>");
-				} else if (msg.contains("EuatReport")) {
-					help.screenshotFullPath(msg, test);
+				} else if (msg.contains("Screenshort")) {
+					help.screenshotFullPath(dot+msg, test);
 				} else if (msg.equalsIgnoreCase("No")) {
 					continue;
 				} else {

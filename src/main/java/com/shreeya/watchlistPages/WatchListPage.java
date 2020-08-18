@@ -245,7 +245,7 @@ public class WatchListPage extends SeleniumCoder {
 			errorList.add(model.getWatchListName() + " watchList deleted sccessfully....." + "-Check");
 		}
 
-		errorList.add(ScreenshortProvider.captureScreen(driver, "AFterDeleteWatchList"));
+		errorList.add(ScreenshortProvider.captureScreen(driver, "AFterDeleteWatchList","Watchlist"));
 		}
 
 	}
@@ -363,7 +363,7 @@ public class WatchListPage extends SeleniumCoder {
 				errorMsg = model.getWatchListName()
 						+ " watchList already present. User should not be allowed to create duplicate watchlist.-PASS";
 				errorList.add(errorMsg);
-				errorList.add(ScreenshortProvider.captureScreen(driver, "WatchList"));
+				errorList.add(ScreenshortProvider.captureScreen(driver, "WatchList","Watchlist"));
 			}
 
 			driver.navigate().refresh();
@@ -421,7 +421,7 @@ public class WatchListPage extends SeleniumCoder {
 
 		watchListCommon.pageVerify(model, "AddScript");
 		/* errorList.add("Before Delete Script and WatchList...."+"-"+watchListName); */
-		errorList.add(ScreenshortProvider.captureScreen(driver, "BeforeDeleteScript"));
+		errorList.add(ScreenshortProvider.captureScreen(driver, "BeforeDeleteScript","Watchlist"));
 		scriptNameArray = help.commaSeparater(model.getVerifyScript());
 		int scriptCount = scriptNameArray.length + 2;
 		for (int i = 2; i < scriptCount; i++) {
@@ -457,7 +457,7 @@ public class WatchListPage extends SeleniumCoder {
 			deleleokButton = fluentWaitCodeXpath("//button[text()='Ok']",200,"Ok button");
 			clickElement(deleleokButton, "Ok button");
 			watchListCommon.pageVerify(model, "AddScript");
-			errorList.add(ScreenshortProvider.captureScreen(driver, "AfterScriptDelete"));
+			errorList.add(ScreenshortProvider.captureScreen(driver, "AfterScriptDelete","Watchlist"));
 		}
 		boolean scriptDelete = true;
 		errorList.add(logScriptName);
@@ -647,7 +647,7 @@ public class WatchListPage extends SeleniumCoder {
 			 * e.printStackTrace(); }
 			 */
 
-		errorList.add(ScreenshortProvider.captureScreen(driver, "watchList"));
+		errorList.add(ScreenshortProvider.captureScreen(driver, "watchList","Watchlist"));
 		closeButton = fluentWaitCodeXpath(driver, "//*[@id='myModal']/div/div/div[1]/a", 5, "Close Button (x)");
 		if (closeButton != null)
 			clickElement(closeButton, "Close order status popup");

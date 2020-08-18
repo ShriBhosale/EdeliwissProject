@@ -123,7 +123,7 @@ public class AlertAndNotificationPage extends SeleniumCoder{
 			common.verifyAlert(model.getStockName(), model.getModifyValule(), model.getModifyValueIs(), detailList);
 		}
 		
-		detailList.add(ScreenshortProvider.captureScreen(driver, "afterAddButton"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "afterAddButton","AlertAndNotification"));
 		
 		msgCloseButton=fluentWaitCodeXpath("//*[@id=\"msgblock\"]/a/i",50, "Msg Close button");
 		if(msgCloseButton!=null)
@@ -201,7 +201,7 @@ public class AlertAndNotificationPage extends SeleniumCoder{
 
 		greaterThanEqualButton=fluentWaitCodeXpath("//label[text()='Value is']//following::div//button", "Greater than equal button");
 		clickElement(greaterThanEqualButton,  "Greater than equal button");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "GreaterThanEqualDropDown"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "GreaterThanEqualDropDown","AlertAndNotification"));
 		greaterTheanEqualStr=help.commpareTwoString(fetchTextFromElement("//*[@id=\"alertsModal\"]/div/div/form/div[2]/div/div[3]/div/div/a[1]", "Less than and equal"), "Less than or Equal to");
 		detailList.add(greaterTheanEqualStr);
 		lessTheanEqualStr=help.commpareTwoString(fetchTextFromElement("//*[@id=\"alertsModal\"]/div/div/form/div[2]/div/div[3]/div/div/a[2]", "Greater than or Equal to"), "Greater than or Equal to");
@@ -229,7 +229,7 @@ public class AlertAndNotificationPage extends SeleniumCoder{
 		detailList.add(common.checkActiveOrNot("//ul[@class='alertvia list-inline list-unstyled']//li[1]", "Email alter"));
 		detailList.add(common.checkActiveOrNot("//ul[@class='alertvia list-inline list-unstyled']//li[2]", "Mobile alter"));
 		detailList.add(common.checkActiveOrNot("//input[@type='submit']", "Add button"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlter"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlter","AlertAndNotification"));
 	}
 	
 	public void checkmodifyAlertPage(String tickSize) {
@@ -244,7 +244,7 @@ public class AlertAndNotificationPage extends SeleniumCoder{
 			
 		}else
 			detailList.add("Modify alter page does not open-FAIL");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "ModifyPopup"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "ModifyPopup","AlertAndNotification"));
 		
 		verifyEnterValueAnotherThenMultipleOfTickSize(tickSize);
 		modifyAlertPopupCloseButton=fluentWaitCodeXpath("//*[@id='alertsModal']/div/div/form/div[1]/a/i", "modify Alert Popup Close button");
@@ -284,8 +284,8 @@ public class AlertAndNotificationPage extends SeleniumCoder{
 		detailList.add(common.checkActiveOrNot("//ul[@class='alertvia list-inline list-unstyled']//li[1]", "Email alter"));
 		detailList.add(common.checkActiveOrNot("//ul[@class='alertvia list-inline list-unstyled']//li[2]", "Mobile alter"));
 		detailList.add(common.checkActiveOrNot("//input[@type='submit']", "Add button"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlter"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlertPage"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlter","AlertAndNotification"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlertPage","AlertAndNotification"));
 	}
 	
 	public void verifyScripCriteria(AlertAndNotificationModel model,String segment) {
@@ -332,7 +332,7 @@ public class AlertAndNotificationPage extends SeleniumCoder{
 		errorMsgLabel=fluentWaitCodeXpath("//input[@value='Update']//preceding::span[1]", "Error msg");
 		if(elementPresentOrNot(errorMsgLabel))
 			detailList.add(help.commpareTwoString(fetchTextFromElement(errorMsgLabel), "Please enter value more than 0 "));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "valueEnterWithNotMultipleTickSize"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "valueEnterWithNotMultipleTickSize","AlertAndNotification"));
 	}
 	
 	public List<String> alterTestCaseExecution(AlertAndNotificationModel model,String segment,List<String> detailList) {

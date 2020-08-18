@@ -24,10 +24,13 @@ public class BrowserLaunch {
 	
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--incognito");
-
+		//cash clear 2 line
+		options.addArguments("disable-infobars");
+		options.addArguments("start-maximized");
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		
+		//cash clear
+		capabilities.setCapability("applicationCacheEnabled", false);
 		//Hub hub = FunctionKeyword.getHub();
 		if (!scenario.equalsIgnoreCase("Partial Order")) {
 
@@ -58,6 +61,7 @@ public class BrowserLaunch {
 		//watchLsit only
 		//driver.get("https://ewuat.edelbusiness.in/delta/");
 		driver.get(config.configReader("URL"));
+		Reporter.log("Execution driver : Browser lanuch : "+driver,true);
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {

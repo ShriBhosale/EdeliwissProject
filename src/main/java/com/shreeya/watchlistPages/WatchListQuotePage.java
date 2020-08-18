@@ -121,7 +121,7 @@ public class WatchListQuotePage extends SeleniumCoder {
 		 * "LTP no"); String ltp=fetchTextFromElement(ltpLabel);
 		 * codePageDetailList.add("LTP : "+help.removeHtmlCode(ltp));
 		 */
-		codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_1"));
+		codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_1","Watchlist"));
 		
 		if(model.getExchange().contains("CDS")||model.getExchange().contains("NFO")||model.getExchange().contains("FNO")) {
 			volumeLabel=fluentWaitCodeXpath("//label[text()='Volume']", "Volume");
@@ -134,30 +134,30 @@ public class WatchListQuotePage extends SeleniumCoder {
 		}
 		
 		
-		codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_2"));
+		codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_2","Watchlist"));
 		
 		smallCaseLabel=fluentWaitCodeXpath("//h2[text()='Smallcase']", "small case");
 		if(smallCaseLabel!=null) {
 			scroll.scrollAndPointToElement(smallCaseLabel);
-			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_3"));
+			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_3","Watchlist"));
 		}
 		
 		keyRadioLabel=fluentWaitCodeXpath("//h2[text()='Key Ratios']", "Key ratios");
 		if(keyRadioLabel!=null) {
 			scroll.scrollAndPointToElement(keyRadioLabel);
-			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_4"));
+			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_4","Watchlist"));
 		}
 		
 		balanceSheetLabel=fluentWaitCodeXpath("//h2[text()='Balance Sheet']", "balance sheet");
 		if(balanceSheetLabel!=null) {
 			scroll.scrollAndPointToElement(balanceSheetLabel);
-			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_5"));
+			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_5","Watchlist"));
 		}
 		
 		cashFlowLabel=fluentWaitCodeXpath("//h2[text()='Cash Flow']", "cash flow");
 		if(cashFlowLabel!=null) {
 			scroll.scrollAndPointToElement(cashFlowLabel);
-			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_6"));
+			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_6","Watchlist"));
 		}
 		
 		if(model.getExchange().contains("CDS")||model.getExchange().contains("NFO")||model.getExchange().contains("FNO")) {
@@ -169,14 +169,14 @@ public class WatchListQuotePage extends SeleniumCoder {
 		if(profitandLossBanksLabel!=null)
 		scroll.scrollAndPointToElement(profitandLossBanksLabel);
 		}
-		codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_7"));
+		codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageScreenshort_7","Watchlist"));
 		return codePageDetailList;
 			}
 
 		public List<String> commodityCodePageVerfication(List<String> codePageDetailList,WatchListModel model) {
 			codePageDetailList.add("Script  : "+model.getScriptName());
 			staticWait(1000);
-			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_0"));
+			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_0","Watchlist"));
 			String [] fullScriptName=help.commaSeparater(model.getFullScriptName());
 			scriptArray=WatchListPage.scriptArray;
 			scriptNameCoLabel=fluentWaitCodeXpath("//*[@id=\"commodity-overview\"]/div/h1","Script Name");
@@ -198,25 +198,25 @@ public class WatchListQuotePage extends SeleniumCoder {
 			averageTradingPriceLabel=fluentWaitCodeXpath("//span[text()='Average Trading Price for today (Rs.)']","Averge trading price");
 			if(averageTradingPriceLabel!=null) {
 				scroll.scrollAndPointToElement(averageTradingPriceLabel);
-				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_1"));
+				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_1","Watchlist"));
 			}
 			
 			tenderCloseLabel=fluentWaitCodeXpath("//*[@id='contentCntr']/div[2]/div[2]/div[1]/div[2]/div[2]/div/div/table/tbody/tr[2]/td[1]/span","tender close");
 			if(tenderCloseLabel!=null) {
 				scroll.scrollAndPointToElement(tenderCloseLabel);
-				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_2"));
+				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_2","Watchlist"));
 			}
 			
 			sharePriceMomentLabel=fluentWaitCodeXpath("//h2[@class='mg-t40 mg-b20 quote-h2 ng-binding']","Share price");
 			if(sharePriceMomentLabel!=null) {
 				scroll.scrollAndPointToElement(sharePriceMomentLabel);
-				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_3"));
+				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_3","Watchlist"));
 			}
 			
 			keyLevelLabel=fluentWaitCodeXpath("//*[@id='technical-analysis']/div/div[2]/h4/span","Key level");
 			if(keyLevelLabel!=null) {
 				scroll.scrollAndPointToElement(keyLevelLabel);
-				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_4"));
+				codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_4","Watchlist"));
 			}
 			
 			return codePageDetailList;
@@ -228,7 +228,7 @@ public class WatchListQuotePage extends SeleniumCoder {
 			switchTab(1);
 			watchListCommon.pageVerify(model, "codingPage");
 			staticWait(2000);
-			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "BeforeClickOnScirptLink"));
+			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "BeforeClickOnScirptLink","Watchlist"));
 			
 			scriptCountLabel = fluentWaitCodeXpath("//span[text()='Your watchlist has ']", "Script Count");
 			String scriptCount = fetchTextFromElement(scriptCountLabel);

@@ -116,7 +116,7 @@ public class WatchListTestcase extends SeleniumCoder{
 			else {
 				detailList.add(watchListNameStr+" : "+help.commpareTwoString(help.removeHtmlReporter(noOfScripStr), "Your WatchList doesnt have any scrips"));
 			}
-			detailList.add(ScreenshortProvider.captureScreen(driver, watchListNameStr));
+			detailList.add(ScreenshortProvider.captureScreen(driver, watchListNameStr,"Watchlist"));
 		}
 		
 		

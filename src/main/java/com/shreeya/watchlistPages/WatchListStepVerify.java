@@ -281,7 +281,7 @@ public class WatchListStepVerify extends SeleniumCoder {
 			Reporter.log(exchangeList.get(i), true);
 		}
 		
-		String screenshot=ScreenshortProvider.captureScreen(driver, "WatchList");
+		String screenshot=ScreenshortProvider.captureScreen(driver, "WatchList","Watchlist");
 		detailList.add(screenshot);
 		
 		for(String detail:detailList) {

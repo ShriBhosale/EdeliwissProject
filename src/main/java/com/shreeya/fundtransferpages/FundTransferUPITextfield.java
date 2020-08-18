@@ -59,7 +59,7 @@ public class FundTransferUPITextfield extends SeleniumCoder{
 	}
 	
 	public void elementlocate() {
-		upiRadioButton=fluentWaitCodeXpath(driver, "//label[@for='upi']","UPI radio button");
+		upiRadioButton=fluentWaitCodeXpath(driver, "//label[@for='upi']",160,"UPI radio button");
 		
 		okButton=fluentWaitCodeXpath("//input[@value='OK']",10,"Ok button");
 		if(okButton!=null)
@@ -85,7 +85,7 @@ public class FundTransferUPITextfield extends SeleniumCoder{
 		locateUPITextfield();
 		upiTextfield=fluentWaitCodeXpath("//input[@id='upiIdTxt']", "UPI texfield");
 		detailList.add("Guid text : "+help.commpareTwoString(getValueFromAttribute(upiTextfield, "placeholder", "UPI texfield"), "Enter UPI id linked to above account"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "UPIGuidLine"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "UPIGuidLine","FundTransfer"));
 	}
 	
 	public void redirectToUPICreationStepPage() {
@@ -106,7 +106,7 @@ public class FundTransferUPITextfield extends SeleniumCoder{
 		}else {
 			detailList.add("Back to Fund transfer Button is not present-FAIL");
 		}
-		detailList.add(ScreenshortProvider.captureScreen(driver, "BackToFundTransferPage"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "BackToFundTransferPage","FundTransfer"));
 	}
 	
 	public void closeUPIStepCreationPage() {
@@ -119,7 +119,7 @@ public class FundTransferUPITextfield extends SeleniumCoder{
 			detailList.add("titile : "+help.removeHtmlText(fetchTextFromElement(balSummaryLabel)));
 			detailList.add("Redirect to Add Fund transfer page-PASS");
 		}
-		detailList.add(ScreenshortProvider.captureScreen(driver, "Add fund transfer page"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "Add fund transfer page","FundTransfer"));
 	}
 	
 	public void enterInvalidUPIid() {
@@ -132,7 +132,7 @@ public class FundTransferUPITextfield extends SeleniumCoder{
 		upiErrorStr=fetchTextFromElement(upiErrorMsg);
 		detailList.add("Error msg : "+help.commpareTwoString(upiErrorStr, "UPI ID should be in the format name@bankname."));
 		}
-		detailList.add(ScreenshortProvider.captureScreen(driver, "UPITextfieldINValid"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "UPITextfieldINValid","FundTransfer"));
 	}
 	
 	public void enterDiffBankUPIid() {
@@ -188,7 +188,7 @@ public class FundTransferUPITextfield extends SeleniumCoder{
 			clickElement(submitButton, "Submit button");
 			staticWait(3000);
 			//upiServicePageLabel=elementLocateBytag("h5");
-			detailList.add(ScreenshortProvider.captureScreen(driver, "UPIServicePageNotExpected"));
+			detailList.add(ScreenshortProvider.captureScreen(driver, "UPIServicePageNotExpected","FundTransfer"));
 			/*
 			 * upiServicePageLabel=elementLocateBytag("h5");
 			 * upiServiceProviderLabel=fetchTextFromElement(upiServicePageLabel);
@@ -287,7 +287,8 @@ public class FundTransferUPITextfield extends SeleniumCoder{
 		detailList=new ArrayList<String>();
 		configReader.fundTransferConfig();
 		Reporter.log("<b>=====@@> UPITextfieldExecution <@@=====</b>", true);
-		fundTransferTab=fluentWaitCodeXpath(driver, "//a[text()='Fund Transfer']",10,"fundTransferTab");
+		fundTransferTab=fluentWaitCodeXpath(driver, "//a[text()='Fund Transfer']",180,"fundTransferTab");
+		Reporter.log("Fundtransfer tab : "+fundTransferTab, true);
 		if(fundTransferTab!=null) {
 			clickElement(fundTransferTab, "FundTransferTab");
 		}

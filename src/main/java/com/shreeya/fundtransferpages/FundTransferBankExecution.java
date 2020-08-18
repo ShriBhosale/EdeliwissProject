@@ -54,7 +54,7 @@ public class FundTransferBankExecution extends SeleniumCoder{
 		 clickElement(seeMarginTab, "See margin tab");
 		 seeMarginBalanceString=common.seeMarginClearCashBalance();
 		
-		 seeMarBalScreenshot=ScreenshortProvider.captureScreen(driver, "SeeMarginBeforeExecution");
+		 seeMarBalScreenshot=ScreenshortProvider.captureScreen(driver, "SeeMarginBeforeExecution","FundTransfer");
 		
 		
 		  while(csvFundTransferIterator.hasNext()){

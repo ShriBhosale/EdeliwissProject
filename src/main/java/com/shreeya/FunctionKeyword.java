@@ -21,10 +21,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.shreeya.alertandnotification.AlertAndNotificationExecution;
-import com.shreeya.fundtransferpages.FundTransferBankExecution;
 import com.shreeya.fundtransferpages.FundTransferExecution;
 import com.shreeya.model.LatestLoginModel;
-import com.shreeya.model.LoginModel;
 import com.shreeya.model.MasterTestModel;
 import com.shreeya.model.TestDataModel;
 import com.shreeya.mypositionspages.MyPositionsExecution;
@@ -40,7 +38,6 @@ import com.shreeya.util.CustomListener;
 import com.shreeya.util.ExtendReporter;
 import com.shreeya.util.FolderStructure;
 import com.shreeya.util.HelperCode;
-import com.shreeya.watchlistPages.WatchListExecution;
 import com.shreeya.watchlistPages.WatchListMainExecution;
 
 @Listeners(CustomListener.class)
@@ -67,6 +64,7 @@ public class FunctionKeyword {
 	LatestLoginModel latestLoginModel;
 	private String segmentStr;
 	AlertAndNotificationExecution alertAndNotificationExecution;
+	
 
 	@BeforeSuite
 	public void beforeSuite() throws IOException {
@@ -89,7 +87,7 @@ public class FunctionKeyword {
 		commodityLoginList=new ArrayList<String>();
 		mergeIdLoginList=new ArrayList<String>();
 		apacheCodeObj = new ApacheCode();
-
+		
 		// apacheCodeObj.outputFileWriterHeader(folderPath[0]);
 
 	}
@@ -100,14 +98,14 @@ public class FunctionKeyword {
 		Reporter.log("BeforeMethod", true);
 	}
 
-	@Parameters({ "Reference", "UserIdEQ", "PasswordEQ", "YobEQ", "UserIdCO", "PasswordCO", "YobCO", "UserIdMI", "PasswordMI", "YobMI", "Module" })
+	@Parameters({ "Reference", "UserIdEQ", "PasswordEQ", "YobEQ", "UserIdCO", "PasswordCO", "YobCO", "UserIdMI", "PasswordMI", "YobMI", "Module","Execution"})
 	@Test
-	public void executionWithKeyword(String referenceNo, String userIdEQ, String pwdEQ, String yobEQ, String userIdCO, String pwdCO, String yobCO,String userIdMI, String pwdMI, String yobMI, String module) throws InterruptedException, IOException {
-		
+	public void executionWithKeyword(String referenceNo, String userIdEQ, String pwdEQ, String yobEQ, String userIdCO, String pwdCO, String yobCO,String userIdMI, String pwdMI, String yobMI, String module,String execution) throws InterruptedException, IOException {
+		if(execution.equalsIgnoreCase("Yes")) {
 		CsvReaderCode code = new CsvReaderCode();
 		Reporter.log("<b><==================== Function KeyWord : executionWithKeyword ================></b>", true);
 		Reporter.log("Before Iterator " + referenceNo);
-
+		Map<Boolean,WebDriver> loginDriverMap;
 		Reporter.log("After Iterator", true);
 		equtiyLoginList.add(referenceNo);
 		equtiyLoginList.add(userIdEQ);
@@ -162,6 +160,7 @@ public class FunctionKeyword {
 				LoginExecution loginPageObj = new LoginExecution(driver);
 				Reporter.log("Login functionality", true);
 				skipScenario=loginPageObj.loginExecution("normal", latestLoginModel);
+				
 				if(skipScenario) {
 					Reporter.log("<b><u>Login step fail</b></u>", true);
 					continue;
@@ -176,44 +175,46 @@ public class FunctionKeyword {
 				break;
 
 			case "fundtransfer":
-				FundTransferExecution fundTransferObj = new FundTransferExecution(driver);
+				FundTransferExecution fundTransferObj = new FundTransferExecution(LoginExecution.loginWebDriver);
+				Reporter.log("Execution driver : FunctionKeyWord : "+LoginExecution.loginWebDriver, true);
 				if(skipScenario==false)
 				fundTransferObj.fundTransferExecute(latestLoginModel);
 				Reporter.log("fun transfer executin", true);
 				break;
 			case "mypositions":
-				MyPositionsExecution myPositionObj = new MyPositionsExecution(driver);
+				MyPositionsExecution myPositionObj = new MyPositionsExecution(LoginExecution.loginWebDriver);
 				if(skipScenario==false)
 				myPositionObj.myPositionsExecute();
 				Reporter.log("My Position Module", true);
 				break;
 			case "seemargin":
-				SeeMarginExecution seeMarginObj = new SeeMarginExecution(driver);
+				SeeMarginExecution seeMarginObj = new SeeMarginExecution(LoginExecution.loginWebDriver);
 				if(skipScenario==false)
 				seeMarginObj.seeMarginExecute();
 				Reporter.log("See Margin Module", true);
 				break;
 			case "seeholdings":
-				SeeHoldingsExecution seeHoldingsObj = new SeeHoldingsExecution(driver);
+				SeeHoldingsExecution seeHoldingsObj = new SeeHoldingsExecution(LoginExecution.loginWebDriver);
 				if(skipScenario==false)
 				seeHoldingsObj.seeHoldingsExecute();
 				Reporter.log("See Holdings Module", true);
 				break;
 				
 			case "watchlist":
-				WatchListMainExecution watchListObj = new WatchListMainExecution(driver);
+				WatchListMainExecution watchListObj = new WatchListMainExecution(LoginExecution.loginWebDriver);
 				if(skipScenario==false)
 					watchListObj.watchListExecute(segmentStr);
 				Reporter.log("Watchlist Module", true);
 				break;
 				
 			case "alertandnotification":
-				AlertAndNotificationExecution alertAndNotificationExecution=new AlertAndNotificationExecution(driver);
+				Reporter.log("Execution driver : FunctionalKeyword : altert :  "+LoginExecution.loginWebDriver, true);
+				AlertAndNotificationExecution alertAndNotificationExecution=new AlertAndNotificationExecution(LoginExecution.loginWebDriver);
 				alertAndNotificationExecution.alertAndNotificationExecute(segmentStr);
 				break;
 			case "logout":
 				if(skipScenario==false)
-				terminateExecution(module, driver,referenceNo);
+				terminateExecution(module, LoginExecution.loginWebDriver,referenceNo);
 				break;
 			/*
 			 * default: Reporter.
@@ -224,6 +225,7 @@ public class FunctionKeyword {
 
 		}
 		
+		}
 		}
 
 	}
@@ -245,9 +247,10 @@ public class FunctionKeyword {
 				reporter.reporter(driver, module, MyTestLauncher.reportFolderPath,referNo);
 				helperObject.outputProcessor(driver, "newOrder", 0, "Terminate", testDataObject, 0);
 			}
-			htmlReport.captureScreen(driver, MyTestLauncher.reportFolderPath[2], "beforLogout", 1);
+			//unComment
+			//htmlReport.captureScreen(driver, MyTestLauncher.reportFolderPath[2], "beforLogout", 1);
 			if(!module.equalsIgnoreCase("login"))
-			login.logout(driver);
+			login.logout(LoginExecution.loginWebDriver);
 			
 			Reporter.log("Execution Terminate.... :)", true);
 		} else {
@@ -258,7 +261,8 @@ public class FunctionKeyword {
 	@AfterMethod
 	public void testAfter(ITestResult result) throws IOException {
 		Reporter.log("End test case execution", true);
-		htmlReport.captureScreen(driver, MyTestLauncher.reportFolderPath[2], "AnyModule", 1);
+		//unComment
+		//htmlReport.captureScreen(driver, MyTestLauncher.reportFolderPath[2], "AnyModule", 1);
 		browserLunch.driverClose();
 	}
 

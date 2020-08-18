@@ -97,7 +97,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 		Reporter.log("====> watchListTab  <====", true);
 		detailList.add("@@> verify number of Tabs present in Watchlist page <@@");
 		detailList.add(help.elementPresent("//span[text()='New Watchlist']", "New WatchList tab"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "WatchListPage"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "WatchListPage","Watchlist"));
 		if(segment.equalsIgnoreCase("Equity")) {
 			checkTabPresetOrNot("//a[text()='Nifty 50']//preceding::a[text()='My Positions'][1]", "My position ", segment);
 			checkTabPresetOrNot("//a[text()='Nifty 50']//preceding::a[text()='My Holdings'][1]","My Holdings ", segment);	
@@ -123,7 +123,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 	public void checkDeleteOptionForWatchList(String watchListName) {
 		Reporter.log("=====> checkDeleteOptionForWatchList <=====", true);
 		common.watchListtabNotFound(watchListName, "check", exchangeConfig);
-		detailList.add(ScreenshortProvider.captureScreen(driver, watchListName+"DeleteOptionPresentOrNot"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, watchListName+"DeleteOptionPresentOrNot","Watchlist"));
 		String xpath="//*[@id='contentCntr']/div/div/div[1]/ul/li/a[text()='"+watchListName+"']//following::ul[@class='action-button hidden-xs']";
 		delAndDefaStartOptInWatchList=fluentWaitCodeXpath(xpath,20,"Delete and default option for watchList");
 		if(delAndDefaStartOptInWatchList==null) 
@@ -212,7 +212,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 		Reporter.log("====> noScriptInWatchList <====", true);
 		clickElement("//button[text()='Create']", "Create buttons");
 		checkAddScriptButton();
-		creWatchWitoutScriptScreenshot=ScreenshortProvider.captureScreen(driver, "createWatchListWitoutScriptScreenshot");
+		creWatchWitoutScriptScreenshot=ScreenshortProvider.captureScreen(driver, "createWatchListWitoutScriptScreenshot","Watchlist");
 		text = "Add a Scrip to " +watchListName;
 		xpathString = "//h4[text()='" + text + "']//following::a[1]";
 		addScriptCancelButton=fluentWaitCodeXpath(xpathString, "Add script cancel button");
@@ -225,7 +225,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 		else
 			cancelButtonClose="Add scrip dialogue box is not close-FAIL";
 		
-		afterClickCancelScreenshot=ScreenshortProvider.captureScreen(driver, "AfterClickOnCancelButton");
+		afterClickCancelScreenshot=ScreenshortProvider.captureScreen(driver, "AfterClickOnCancelButton","Watchlist");
 		}else {
 			cancelButtonMsg="In Add script Dialog box cancel button is present and disable-FAIL";
 		}
@@ -250,7 +250,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 			watchListResult=help.commpareTwoString(watchList, watchListName);
 			Reporter.log("<b>watchListResult : "+watchListResult+"</b>", true);
 		}
-		watchListPresentScreenshot=ScreenshortProvider.captureScreen(driver, watchListName+"watchListPresent");
+		watchListPresentScreenshot=ScreenshortProvider.captureScreen(driver, watchListName+"watchListPresent","Watchlist");
 	}
 	
 	public void checkTabPresetOrNot(String xpath,String elementName,String segment) {
@@ -422,7 +422,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 		detailList.add("@@> Verify Lenth of watchlist name <@@");
 		common.clickNewWatchListButton();
 		enterWatchListTextfield("watchListNameMaximum");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "MaxCharaterWatchList"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "MaxCharaterWatchList","Watchlist"));
 		char [] charArray=enterWatchListName.toCharArray();
 		detailList.add("WatchList name : watchListNameMaximum");
 		detailList.add("Enter watchList name : "+enterWatchListName);
@@ -445,7 +445,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 		}else {
 			detailList.add("initialy create button is enable-FAIL");
 		}
-		detailList.add(ScreenshortProvider.captureScreen(driver, "InitialWatchListTextfield"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "InitialWatchListTextfield","Watchlist"));
 	}
 	
 	public void checkCreateButtonWhenBlankWatchLitText() {
@@ -460,7 +460,7 @@ public class WatchListExtraScenario extends SeleniumCoder {
 		}else {
 			detailList.add("watchList name field is blank still it is enable-FAIL");
 		}
-		detailList.add(ScreenshortProvider.captureScreen(driver, "blankWatchListTextfield"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "blankWatchListTextfield","Watchlist"));
 	}
 	
 	public void checkWithSpaceInBetween() {

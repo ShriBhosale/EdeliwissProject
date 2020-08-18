@@ -280,7 +280,7 @@ public class WatchListCommon extends SeleniumCoder{
 				errorMsg = watchListName
 						+ " watchList already present. User should not be allowed to create duplicate watchlist.-PASS";
 				errorList.add(errorMsg);
-				errorList.add(ScreenshortProvider.captureScreen(driver, "WatchList"));
+				errorList.add(ScreenshortProvider.captureScreen(driver, "WatchList","Watchlist"));
 			}
 
 			driver.navigate().refresh();
@@ -357,7 +357,7 @@ public class WatchListCommon extends SeleniumCoder{
 				deleteWatchListArray[0]="Delete popup msg : "+deleteWatchListPopupMsg+"-FAIL";
 			
 			staticWait(1000);
-			deleteWatchListArray[2]=ScreenshortProvider.captureScreen(driver, "watchListDeletePopup");
+			deleteWatchListArray[2]=ScreenshortProvider.captureScreen(driver, "watchListDeletePopup","Watchlist");
 			/*deleteWatchListButton=fluentWaitCodeXpath("//button[text()='Delete']",200,"delete watchList button");
 			clickElement(deleteWatchListButton, "delete button");*/
 			deleteCancelButton=fluentWaitCodeXpath("//button[text()='Delete']//following::a[1]", "Delete cancel button");
@@ -378,7 +378,7 @@ public class WatchListCommon extends SeleniumCoder{
 			}
 		}
 
-		errorList.add(ScreenshortProvider.captureScreen(driver, "AFterDeleteWatchList"));
+		errorList.add(ScreenshortProvider.captureScreen(driver, "AFterDeleteWatchList","Watchlist"));
 		}
 
 	
@@ -460,7 +460,7 @@ public class WatchListCommon extends SeleniumCoder{
 		
 		deleteScriptButton(deleteScripButton, tradingSymbolArray);
 		
-		deleteScriptArray.add(ScreenshortProvider.captureScreen(driver, "deletedScript"));
+		deleteScriptArray.add(ScreenshortProvider.captureScreen(driver, "deletedScript","Watchlist"));
 		clickElement(deleteScripButton, "Delete script button");
 		
 		popupDeleteButton = fluentWaitCodeXpath("//button[text()='Delete']", "popup Delete Button");
@@ -635,7 +635,7 @@ public class WatchListCommon extends SeleniumCoder{
 		else if(step.equalsIgnoreCase("createDuplicate"))
 			errorMsgList.add(help.commpareTwoString(help.removeHtmlReporter(fetchTextFromElement(popupErrorMsg)).trim(), "Watchlist Name Already Exists!"));
 		
-		errorMsgList.add(ScreenshortProvider.captureScreen(driver, step));
+		errorMsgList.add(ScreenshortProvider.captureScreen(driver, step,"Watchlist"));
 		clickElement(okButton, "Ok button");
 		
 		}
@@ -668,7 +668,7 @@ public class WatchListCommon extends SeleniumCoder{
 		boolean scriptPresentFlg=false;
 		Reporter.log("TradeSymbol : "+tradeSymbol, true);
 		
-		detailList.add(ScreenshortProvider.captureScreen(driver,tradeSymbol+"verify"));
+		detailList.add(ScreenshortProvider.captureScreen(driver,tradeSymbol+"verify","Watchlist"));
 		
 		
 		List<String> scriptNameList=multipleElementsTextProvider("//*[@id=\"contentCntr\"]/div/div/div[1]/div[3]/div/div/div/div/div[2]/div/div[1]/div[1]/a", "Script name");

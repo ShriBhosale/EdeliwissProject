@@ -1235,7 +1235,7 @@ public class SeleniumCoder extends ExceptionHandler {
 	}
 	
 	public void screenshortAttach(String screeenshotName) {
-		String screenshot=ScreenshortProvider.captureScreen(driver, screeenshotName);
+		String screenshot=ScreenshortProvider.captureScreen(driver, screeenshotName,"Any module");
 		screenshot=help.absolutePathProvider(screenshot);
 		String pathAttach="\"<img src=\"\\\"file://\"\" alt=\"\\\"\\\"/\" />\";";
 	}

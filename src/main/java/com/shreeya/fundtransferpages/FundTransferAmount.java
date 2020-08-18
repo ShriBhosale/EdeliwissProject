@@ -184,15 +184,18 @@ public class FundTransferAmount extends SeleniumCoder{
 	public String amountTextfieldScreenshot(String screenshortName) {
 		scroll.scrollToSpecificLocation(0, 250);
 		staticWait(200);
-		return ScreenshortProvider.captureScreen(driver,screenshortName);
+		return ScreenshortProvider.captureScreen(driver,screenshortName,"FundTransfer");
 	}
 	
 	public void amountTextfieldExecute(FundTransferReport fundTransferReport) {
 		detailList=new ArrayList<String>();
 		Reporter.log("<b>======@@> amountTextfieldExecute <@@======</b>", true);
-		fundTransferTab=fluentWaitCodeXpath(driver, "//a[text()='Fund Transfer']","fundTransferTab");
+		staticWait(2000);
+		Reporter.log("Execution driver : "+driver, true);
+		fundTransferTab=fluentWaitCodeXpath(driver, "//a[text()='Fund Transfer']",150,"fundTransferTab");
+		Reporter.log("Fundtransfer tab : FundTransferAmount : "+fundTransferTab, true);
 		clickElement(fundTransferTab, "FundTransferTab");
-		 
+		 staticWait(3000);
 		elementLocator();
 		blankAmountTextfield();
 		checkAmountTextfieldGuidText();

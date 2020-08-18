@@ -57,6 +57,7 @@ public class MyTestLauncher {
 			 testScenarioParameters.put("PasswordMI", executionModel.getPasswordMI());
 			 testScenarioParameters.put("YobMI", executionModel.getYobMI());
 			 testScenarioParameters.put("Module", executionModel.getModule());
+			 testScenarioParameters.put("Execution", executionModel.getExecution());
 		XmlTest test = new XmlTest(suite);
 		Reporter.log("ReferNo=====> "+executionModel.getReferNo(),true);
 		test.setName("ServerLog_"+executionModel.getReferNo());

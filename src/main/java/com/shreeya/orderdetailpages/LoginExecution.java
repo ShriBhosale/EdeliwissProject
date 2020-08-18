@@ -1,7 +1,9 @@
 package com.shreeya.orderdetailpages;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
@@ -12,7 +14,6 @@ import org.testng.Reporter;
 
 import com.shreeya.MyTestLauncher;
 import com.shreeya.model.LatestLoginModel;
-import com.shreeya.model.LoginModel;
 import com.shreeya.model.LoginTestModel;
 import com.shreeya.util.CsvReaderCode;
 import com.shreeya.util.ExtendReporter;
@@ -24,6 +25,7 @@ public class LoginExecution extends SeleniumCoder{
 	WebDriver driver;
 	LoginTestModel loginTestModel=null;
 	ExtendReporter report;
+	public static WebDriver loginWebDriver;
 	
 	public LoginExecution(WebDriver driver) {
 		super(driver);
@@ -34,11 +36,12 @@ public class LoginExecution extends SeleniumCoder{
 	
 	public boolean loginExecution(String scenario, LatestLoginModel loginModelObject) throws InterruptedException, IOException {
 		boolean skipScenario=false;
+		Map<Boolean,WebDriver> loginMap=new HashMap<>();
 		// driver=browserLaunch(scenario);
 		
 		if (!loginModelObject.getModule().equalsIgnoreCase("login")) {
 			try {
-			loginPage.loginCodeExecution(scenario, loginModelObject);
+			loginWebDriver=loginPage.loginCodeExecution(scenario, loginModelObject);
 			if(!loginPage.popupFlag) {
 				WebElement placeOrderLink=fluentWaitCodeXpath("//a[text()='Place Order']", 10, "Place order tab");
 				if(placeOrderLink==null)
@@ -54,6 +57,7 @@ public class LoginExecution extends SeleniumCoder{
 		} else {
 			loginRegressionExecution(loginModelObject);
 		}
+		loginMap.put(skipScenario,loginWebDriver);
 		
 		return skipScenario;
 	}

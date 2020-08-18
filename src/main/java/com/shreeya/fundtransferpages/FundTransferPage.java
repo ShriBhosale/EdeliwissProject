@@ -105,10 +105,10 @@ public class FundTransferPage extends SeleniumCoder {
 	
 	public void clickUPICreatelink() {
 		detailList.add("@@>Verify for UPI id field for option available to create new UPI  id by clicking on Know how.<@@");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "CheckingUPICreateLink"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "CheckingUPICreateLink","FundTransfer"));
 		createUPILink=fluentWaitCodeXpath("//a[text()='Know how']", "create upi link");
 		clickElement(createUPILink, "create upi link");
-				detailList.add(ScreenshortProvider.captureScreen(driver, "UPIidCreationStepScreenshot"));
+				detailList.add(ScreenshortProvider.captureScreen(driver, "UPIidCreationStepScreenshot","FundTransfer"));
 		detailList.add("@@> Verify when user clicks on back To fund Transfer while creating the UPI id from add funds page.<@@");
 		backtoFundTransferButton=fluentWaitCodeXpath("//button[@gtmdir-text='Back to Fund Transfer | UPI']", "Back to fund transfer");
 		clickElement(backtoFundTransferButton, "Back to fund transfer");
@@ -250,7 +250,7 @@ public class FundTransferPage extends SeleniumCoder {
 		}
 		
 		fillAmount(model.getAmount());
-		addFundScreenshot=ScreenshortProvider.captureScreen(driver, "AddFundTransferForm");
+		addFundScreenshot=ScreenshortProvider.captureScreen(driver, "AddFundTransferForm","FundTransfer");
 		detailList=payment.paymentCodeExecution(model,accountNo,optionAfterTransfer,addFundScreenshot);
 		report.fundTransferReport(detailList,model,optionAfterTransfer);
 	}

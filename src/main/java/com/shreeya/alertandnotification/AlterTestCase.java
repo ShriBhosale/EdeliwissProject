@@ -51,7 +51,7 @@ public class AlterTestCase extends SeleniumCoder{
 		detailList.add("@@> Verify if there is a dropdown box with Greater or Equal and Lesser or Equal options. <@@");
 		greaterThanEqualButton=fluentWaitCodeXpath("//label[text()='Value is']//following::div//button", "Greater than equal button");
 		clickElement(greaterThanEqualButton,  "Greater than equal button");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "GreaterThanEqualDropDown"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "GreaterThanEqualDropDown","AlertAndNotification"));
 		greaterTheanEqualStr=help.commpareTwoString(fetchTextFromElement("//*[@id=\"alertsModal\"]/div/div/form/div[2]/div/div[3]/div/div/a[1]", "Less than and equal"), "Less than or Equal to");
 		detailList.add(greaterTheanEqualStr);
 		lessTheanEqualStr=help.commpareTwoString(fetchTextFromElement("//*[@id=\"alertsModal\"]/div/div/form/div[2]/div/div[3]/div/div/a[2]", "Greater than or Equal to"), "Greater than or Equal to");
@@ -79,7 +79,7 @@ public class AlterTestCase extends SeleniumCoder{
 		detailList.add(common.checkActiveOrNot("//ul[@class='alertvia list-inline list-unstyled']//li[1]", "Email alter"));
 		detailList.add(common.checkActiveOrNot("//ul[@class='alertvia list-inline list-unstyled']//li[2]", "Mobile alter"));
 		detailList.add(common.checkActiveOrNot("//input[@type='submit']", "Add button"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlter"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AddAlter","AlertAndNotification"));
 	}
 	
 	public void checkmodifyAlertPage() {
@@ -94,7 +94,7 @@ public class AlterTestCase extends SeleniumCoder{
 			
 		}else
 			detailList.add("Modify alter page does not open-FAIL");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "ModifyPopup"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "ModifyPopup","AlertAndNotification"));
 		modifyAlertPopupCloseButton=fluentWaitCodeXpath("//*[@id='alertsModal']/div/div/form/div[1]/a/i", "modify Alert Popup Close button");
 		if(modifyAlertPopupCloseButton!=null)
 			clickElement(modifyAlertPopupCloseButton, "modify Alert Popup Close button");

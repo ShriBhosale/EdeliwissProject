@@ -59,7 +59,7 @@ public class FundTransferReport extends ExtendReporter {
 		}	
 		errorFail("<b>===Abnormal termination===</b>");
 		errorFail("Not found or not intractable "+SeleniumCoder.elementNameError);
-		printLog(ScreenshortProvider.captureScreen(driver, "Abnormaltermination"));
+		printLog(ScreenshortProvider.captureScreen(driver, "Abnormaltermination","FundTransfer"));
 		
 	}
 

@@ -50,7 +50,7 @@ public class PlaceOrder extends SeleniumCoder {
 				clickElement(buyButton,"Sell button");
 			}
 		
-			String screenshot=ScreenshortProvider.captureScreen(driver, "OrderPlacementPage");
+			String screenshot=ScreenshortProvider.captureScreen(driver, "OrderPlacementPage","FundTransfer");
 			staticWait(1000);
 			productType(model.getProductType(),model.getExchange());
 			qtyTextfield(model.getQty(),model.getExchange());

@@ -7,6 +7,7 @@ import org.testng.Reporter;
 
 import com.shreeya.MyTestLauncher;
 import com.shreeya.model.LatestLoginModel;
+import com.shreeya.util.FolderStructure;
 import com.shreeya.util.SeleniumCoder;
 
 public class FundTransferExecution extends SeleniumCoder{
@@ -19,17 +20,20 @@ public class FundTransferExecution extends SeleniumCoder{
 	FundTransferUPI_Id fundTransferUPI_Id;
 	FundTransferInternetBanking internetBanking;
 	FundTransferProfile profile;
+	FolderStructure folderStructure;
 	public FundTransferExecution(WebDriver driver)
 	{
 		super(driver);
 		this.driver=driver;
 		fundTransferBankExecution=new FundTransferBankExecution(driver);
 		FundTransferAmount=new FundTransferAmount(driver);
-		report = new FundTransferReport(MyTestLauncher.reportFolderPath[1], "FundTransfer", 0);
+		//report = new FundTransferReport(MyTestLauncher.reportFolderPath[1], "FundTransfer", 0);
+		report = new FundTransferReport(System.getProperty("user.dir")+"/FundTransfer", "FundTransfer", 0);
 		fundTransferUPITextfield=new FundTransferUPITextfield(driver);
 		fundTransferUPI_Id=new FundTransferUPI_Id(driver);
 		internetBanking=new FundTransferInternetBanking(driver);
 		profile=new FundTransferProfile(driver);
+		folderStructure=new FolderStructure();
 	}
 	public void fundTransferExecute(LatestLoginModel model) {
 		Reporter.log("<b><font color='Yellow'>=========@@@@ FundTransfer_"+model.getReferNo()+" @@@@========</font></b>", true);
@@ -58,5 +62,6 @@ public class FundTransferExecution extends SeleniumCoder{
 			}
 		}
 		report.fundTransferLogFlush();
+		folderStructure.copyFolderThenDelete(System.getProperty("user.dir")+"/FundTransfer",MyTestLauncher.reportFolderPath[0]);
 	}
 }

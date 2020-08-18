@@ -100,7 +100,7 @@ public class PredefineWatchList extends SeleniumCoder{
 				clickElement(buyButton,"Sell button");
 			}
 		
-			String screenshot=ScreenshortProvider.captureScreen(driver, "OrderPlacementPage");
+			String screenshot=ScreenshortProvider.captureScreen(driver, "OrderPlacementPage","Watchlist");
 			staticWait(1000);
 			productType(model.getProductType(),model.getExchange());
 			qtyTextfield(model.getQty(),model.getExchange());
@@ -221,7 +221,7 @@ public class PredefineWatchList extends SeleniumCoder{
 			orderDetail.equalsIgnoreCase("Screenshot link1")||orderDetail.equalsIgnoreCase("Partial Qty")))
 			predefineWatchListDetail.add(orderDetail);
 		}
-		predefineWatchListDetail.add(ScreenshortProvider.captureScreen(driver, "watchList"));
+		predefineWatchListDetail.add(ScreenshortProvider.captureScreen(driver, "watchList","Watchlist"));
 		closeButton = fluentWaitCodeXpath(driver, "//*[@id='myModal']/div/div/div[1]/a",5,"Close Button (x)");
 		if(closeButton!=null)
 		clickElement(closeButton, "Close order status popup");
@@ -306,7 +306,7 @@ public class PredefineWatchList extends SeleniumCoder{
 				tradingSymbolStr=elementsTextFilter(fetchTextFromElement(tradingSymbolLabel));
 				
 				predefineWatchListDetail.add(exchange+" trading symbol : "+tradingSymbolStr+"-FAIL");
-				predefineWatchListDetail.add(ScreenshortProvider.captureScreen(driver,"UnmatchExchangeInPreWatch"));
+				predefineWatchListDetail.add(ScreenshortProvider.captureScreen(driver,"UnmatchExchangeInPreWatch","Watchlist"));
 				Reporter.log("Unmatch exchange script name  : "+tradingSymbolStr, true);
 				matchExchage=false;
 				break;
@@ -395,7 +395,7 @@ public class PredefineWatchList extends SeleniumCoder{
 		String xpath="//*[@id='contentCntr']/div/div/div[1]/div[3]/div/div/div/div/div[2]/div["+noScript+"]/div[1]/div[1]/a";
 		WebElement scriptLable=fluentWaitCodeXpath(xpath, "scriptLabel");
 		//clickElement(xpath, "Script link");
-		predefineWatchListDetail.add(ScreenshortProvider.captureScreen(driver, "WatchList"));
+		predefineWatchListDetail.add(ScreenshortProvider.captureScreen(driver, "WatchList","Watchlist"));
 		
 		checkExchangeInPreWatchList(model.getWatchListName(),totalScript);
 		}

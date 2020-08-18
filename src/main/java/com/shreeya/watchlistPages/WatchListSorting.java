@@ -138,7 +138,7 @@ public class WatchListSorting extends SeleniumCoder{
 		else
 			detailList.add(watchListName+" script not are sorted by "+sorting+" on "+groupElementName+"-FAIL");
 		
-		detailList.add(ScreenshortProvider.captureScreen(driver, groupElementName));
+		detailList.add(ScreenshortProvider.captureScreen(driver, groupElementName,"Watchlist"));
 	}
 	
 	

@@ -104,7 +104,7 @@ public class AlterAndNotificationCommon extends SeleniumCoder{
 		 scripName=help.checkScripName(scripName);
 		List<String> scriptNameList=multipleElementsTextProvider("//label[@class='ed-lbl reg scripnamenone ng-binding ng-scope']", "ScriptName");
 		for(int i=0;i<scriptNameList.size();i++) {
-			if(scriptNameList.get(i).equalsIgnoreCase(scripName)) {
+			if(scriptNameList.get(i).trim().equalsIgnoreCase(scripName)) {
 				scripIndex=i+1;
 				break;
 			}
@@ -117,7 +117,7 @@ public class AlterAndNotificationCommon extends SeleniumCoder{
 		Reporter.log("======> afterDelete <======", true);
 		scripName=help.checkScripName(scripName);
 		deletArray[3]=help.removeHtmlReporter(fetchTextFromElement("//label[@class='mbMsg ng-binding']", "Delete Msg"));
-		deletArray[2]=ScreenshortProvider.captureScreen(driver, "AlertDeletePopup");
+		deletArray[2]=ScreenshortProvider.captureScreen(driver, "AlertDeletePopup","AlertAndNotification");
 		int scripNo=scriptIndex(scripName);
 		int count=0;
 		do {
@@ -230,7 +230,7 @@ public class AlterAndNotificationCommon extends SeleniumCoder{
 			 loginModelObject=new LatestLoginModel(1, configReader.configReaderAN("UserIdCo"), 
 					configReader.configReaderAN("PasswordCo"),  configReader.configReaderAN("YobCo"), "Alert",segment);
 		}
-		login.loginExecution("", loginModelObject);
+		//login.loginExecution("", loginModelObject);
 		OrderPlaceModel orderPlaceModel=new OrderPlaceModel(model.getReferNo(), model.getStockName(), model.getSegment(), "Sell", model.getValue(), model.getProductType(), model.getQty());
 		String orderDetailScreenshot=placeOrder.orderPlace(orderPlaceModel);
 		if(segment.equalsIgnoreCase("Equity")) {

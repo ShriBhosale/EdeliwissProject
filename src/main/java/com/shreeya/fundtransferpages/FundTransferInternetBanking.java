@@ -74,7 +74,7 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 	public void verifyFundTransferTabs() {
 		Reporter.log("===> verifyFundTransferTabs <===", true);
 		detailList.add("@@> Verify user is able to switch between the tabs in fundtransfer page. <@@");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "checkFundTransferAllTabs"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "checkFundTransferAllTabs","FundTransfer"));
 
 		addFundTab = fluentWaitCodeXpath("//a[text()='TRANSFER STATUS']//preceding::a[text()='Add Funds']","add fund tab");
 		clickElement(addFundTab, "Add fund tab");
@@ -165,7 +165,7 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 		String decimalAmout = "50.2036";
 		detailList.add("Enter amount : " + decimalAmout);
 		clearAndSendKey(amountToTransferTextField, decimalAmout, "Amount To Transfer TextField");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AmountMoreThenTwoDecimal"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AmountMoreThenTwoDecimal","FundTransfer"));
 		if (getValueFromAttribute(amountToTransferTextField, "value", "amount").equalsIgnoreCase(decimalAmout)) {
 			detailList.add("Amount textfield  allow to enter more than two digits after decimal-FAIL");
 		} else {
@@ -194,7 +194,7 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 			} else
 				detailList.add("It is redirect to " + common.currentUrl() + " page-FAIL");
 
-			detailList.add(ScreenshortProvider.captureScreen(driver, "AfterAddFundRedirectPage"));
+			detailList.add(ScreenshortProvider.captureScreen(driver, "AfterAddFundRedirectPage","FundTransfer"));
 			common.backFundTransferPage();
 		}
 	}
@@ -216,7 +216,7 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 		else
 			detailList.add("Primary Label is not present-FAIL");
 		detailList.add("bank Name : " + bankNameAccountNo);
-		detailList.add(ScreenshortProvider.captureScreen(driver, "PrimaryAcLabelOnBank"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "PrimaryAcLabelOnBank","FundTransfer"));
 	}
 
 	public void checkBankSelection() {
@@ -248,7 +248,7 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 
 			detailList.add("Multiple bank selected -FAIL");
 		}
-		detailList.add(ScreenshortProvider.captureScreen(driver, "OneBankSelected"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "OneBankSelected","FundTransfer"));
 	}
 
 	public void cancelFundTransferFromBankDetailPage() {
@@ -276,14 +276,14 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 			else
 				detailList.add("Now we not present on fund transfer page-FAIL");
 		} else {
-			detailList.add(ScreenshortProvider.captureScreen(driver, "Addfundfailed"));
+			detailList.add(ScreenshortProvider.captureScreen(driver, "Addfundfailed","FundTransfer"));
 			detailList.add(fetchTextFromElement(failMsg) + "-PASS");
 			retryButton = fluentWaitCodeXpath("//a[text()='Retry']", "Retry button");
 			clickElement(retryButton, "Retry button");
 			addFundTab = fluentWaitCodeXpath("//a[text()='TRANSFER STATUS']//preceding::a[text()='Add Funds']", 50,"add fund tab");
 			if (addFundTab != null) {
 				detailList.add("Now we redirect to add fund transfer page-PASS");
-				detailList.add(ScreenshortProvider.captureScreen(driver, "AddFundTransferPage"));
+				detailList.add(ScreenshortProvider.captureScreen(driver, "AddFundTransferPage","FundTransfer"));
 			} else {
 				detailList.add("We not able to redirect to add FundTransfer page-FAIL");
 			}
@@ -324,7 +324,7 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 				"add fund tab");
 		if (addFundTab != null) {
 			detailList.add("Now we redirect to add fund transfer page-PASS");
-			detailList.add(ScreenshortProvider.captureScreen(driver, "AddFundTransferPage"));
+			detailList.add(ScreenshortProvider.captureScreen(driver, "AddFundTransferPage","FundTransfer"));
 		} else {
 			detailList.add("We not able to redirect to add FundTransfer page-FAIL");
 		}
@@ -371,7 +371,7 @@ public class FundTransferInternetBanking extends SeleniumCoder {
 		
 		detailList.add("Bank name : "+bankName);
 		detailList.add(errorMsg+"-PASS");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AxisBankPageWithError"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AxisBankPageWithError","FundTransfer"));
 		common.checkThenBackFundTransfer();
 	}
 	

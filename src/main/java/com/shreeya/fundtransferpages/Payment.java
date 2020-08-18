@@ -105,7 +105,7 @@ public class Payment extends SeleniumCoder{
 	
 	public void paymentForICICI(FundTransferModel model,String optionAfterTransfer) {
 		Reporter.log("===> paymentForICICI <===", true);
-		detailList.add(ScreenshortProvider.captureScreen(driver, "NativeICICIBank"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "NativeICICIBank","FundTransfer"));
 		
 		
 		loginICICBank(model.getUserName(), model.getPassword(), model.getAccountType(),false);
@@ -145,8 +145,8 @@ public class Payment extends SeleniumCoder{
 			  clickElement(failureRadioButton, "Failure radio button"); 
 			  }
 		 
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AtomPayment"));
-		screenshotList.add(ScreenshortProvider.captureScreen(driver, "AtomPayment"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AtomPayment","FundTransfer"));
+		screenshotList.add(ScreenshortProvider.captureScreen(driver, "AtomPayment","FundTransfer"));
 		completTransaction=fluentWaitCodeXpath("//input[@value='Click To Complete Transaction']", "Complete Transaction button");
 		clickElement(completTransaction, "Complete Transaction button");
 		if(!accountNo.equalsIgnoreCase("No")||(model.getBank().equalsIgnoreCase("ICICI BANK LTD"))) {
@@ -166,7 +166,7 @@ public class Payment extends SeleniumCoder{
 			clickElement(failureButtonRazor, "Razor Failure button");	
 		}
 		 else { 
-		detailList.add(ScreenshortProvider.captureScreen(driver, "RazorPayment"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "RazorPayment","FundTransfer"));
 		successButtonRazor=fluentWaitCodeXpath("//button[text()='Success']", "Razor Success button");
 		clickElement(successButtonRazor, "Razor Success button");
 		 }
@@ -177,7 +177,7 @@ public class Payment extends SeleniumCoder{
 	
 	public void fundTransferFail(FundTransferModel model,String accountNo,String transferMode) {
 		Reporter.log("====> fundTransferFail <====");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "FundTransferFail"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "FundTransferFail","FundTransfer"));
 		List<String> transferInfoList=new ArrayList<String>();
 		fundTransferFailMsg=fluentWaitCodeXpath("//label[text()='Fund transfer failed']", "Fund transfer failed label");
 		if(fundTransferFailMsg!=null) {
@@ -229,7 +229,7 @@ public class Payment extends SeleniumCoder{
 		
 		secureLoginButton=fluentWaitCodeXpath("//a[@id='secure-login01']", "Secure Login button");
 		clickElement(secureLoginButton, "Secure Login button");
-		screenshotStr=ScreenshortProvider.captureScreen(driver, "KotakOTPPage");
+		screenshotStr=ScreenshortProvider.captureScreen(driver, "KotakOTPPage","FundTransfer");
 		//browserPopup(true);
 		//checkPopupPresentIfYesHandly(true);
 		otpTextfield=fluentWaitCodeXpath("//input[@type='password']",100, "OTP textfield");
@@ -240,7 +240,7 @@ public class Payment extends SeleniumCoder{
 				clickElement(verifyButton, "Verify button");
 			}
 		}
-		screenshotStr=ScreenshortProvider.captureScreen(driver, "KotakConfirmationPage");
+		screenshotStr=ScreenshortProvider.captureScreen(driver, "KotakConfirmationPage","FundTransfer");
 		confirmButton=fluentWaitCodeXpath("//h3[text()='Transaction Details']//preceding::a[@id='next-step2']", "confirm Button");
 		cancelButton=fluentWaitCodeXpath("//h3[text()='Transaction Details']//preceding::a[@id='cancelEnable']", "Cancel Button");
 		if(confirmOrNot)
@@ -269,8 +269,8 @@ public class Payment extends SeleniumCoder{
 		staticWait(3000);
 		
 		List<String> transferInfoList=new ArrayList<String>();
-		detailList.add(ScreenshortProvider.captureScreen(driver, "TranscationSuccessfullyPage"));	
-		screenshotList.add(ScreenshortProvider.captureScreen(driver, "TranscationSuccessfullyPage"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "TranscationSuccessfullyPage","FundTransfer"));	
+		screenshotList.add(ScreenshortProvider.captureScreen(driver, "TranscationSuccessfullyPage","FundTransfer"));
 		fundTransferSccessfullyMsg=fluentWaitCodeXpath("//label[@class='successInfo']//label", "fund transfer successful msg");
 		detailList.add(help.commpareTwoString(fetchTextFromElement(fundTransferSccessfullyMsg), "Fund transferred successfully"));
 		List<String> transferDetailList=multipleElementsTextProvider("//div[@class='impsBankDetails detSuces']//label", "Transfer detail");
@@ -316,8 +316,8 @@ public class Payment extends SeleniumCoder{
 					orderDetail.equalsIgnoreCase("Screenshot link1")||orderDetail.equalsIgnoreCase("Partial Qty")))
 					detailList.add(orderDetail);
 				}
-			 detailList.add(ScreenshortProvider.captureScreen(driver, "PlaceOrderInFundTransfer"));
-			 screenshotList.add(ScreenshortProvider.captureScreen(driver, "PlaceOrderInFundTransfer"));
+			 detailList.add(ScreenshortProvider.captureScreen(driver, "PlaceOrderInFundTransfer","FundTransfer"));
+			 screenshotList.add(ScreenshortProvider.captureScreen(driver, "PlaceOrderInFundTransfer","FundTransfer"));
 		}
 		
 		closeButton = fluentWaitCodeXpath(driver, "//*[@id='myModal']/div/div/div[1]/a",5,"Close Button (x)");
@@ -342,9 +342,9 @@ public class Payment extends SeleniumCoder{
 		clickElement(transferStatusTab, "transfer status tab");
 		//addFundTransferAmount(model.getAmount(),fundTransferResult);
 		staticWait(5000);
-		transferStatusPageScreenshot=ScreenshortProvider.captureScreen(driver, "TransferStatusPage");
+		transferStatusPageScreenshot=ScreenshortProvider.captureScreen(driver, "TransferStatusPage","FundTransfer");
 		detailList.add(transferStatusPageScreenshot);
-		screenshotList.add(ScreenshortProvider.captureScreen(driver, "TransferStatusPage"));
+		screenshotList.add(ScreenshortProvider.captureScreen(driver, "TransferStatusPage","FundTransfer"));
 		transferStatusElementsStr="//a[text()='Apply']//following::div[@class='table-row ng-scope'][1]//div//div//span";
 		List<WebElement> transferStatusElementList=multipleElementLocator(transferStatusElementsStr, "Transfer status element");
 		for(WebElement element:transferStatusElementList) {
@@ -422,7 +422,7 @@ public class Payment extends SeleniumCoder{
 		String [] exprieDate=help.commaSeparater(model.getExpireDate());
 		cardEnterNo(model.getDebitCardNo());
 		expiryDate(model.getExpireDate());
-		detailList.add(ScreenshortProvider.captureScreen(driver, "NativeCitiBank"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "NativeCitiBank","FundTransfer"));
 		CardSecurityCodeTextfield=fluentWaitCodeXpath("//div[@id='CITI_CREDIT_DIV']//input[@name='HtmlCVVNum']", "card security code");
 		clearAndSendKey(CardSecurityCodeTextfield, model.getCardSecurityCode(), "Card security code");
 		submitButton=fluentWaitCodeXpath("//input[@id='submitciti']", "Submit button");
@@ -470,7 +470,7 @@ public class Payment extends SeleniumCoder{
 	
 	public void compareBalanceWithSeeMargin(String amount,String result) {
 		Reporter.log("===> compareBalanceWithSeeMargin <===", true);
-		detailList.add(ScreenshortProvider.captureScreen(driver, "SeeMarginTabCompareBalance"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "SeeMarginTabCompareBalance","FundTransfer"));
 		
 		String seeMarginUpdateBalance=fundTransferCommon.seeMarginClearCashBalance();
 		String addAmount=help.bigDataAddition(FundTransferBankExecution.seeMarginBalanceString, amount);

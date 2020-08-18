@@ -26,12 +26,16 @@ public class ExecutionModel {
 	private String yobMI;
 	@CsvBindByName(column = "Module")
 	private String module;
+	@CsvBindByName(column = "Execution")
+	private String execution;
 	
 	public ExecutionModel() {}
 	
 	
+	
 	public ExecutionModel(String referNo, String userIdEQ, String passwordEQ, String yobEQ, String userIdCO,
-			String passwordCO, String yobCO, String userIdMi, String passwordMI, String yobMI, String module) {
+			String passwordCO, String yobCO, String userIdMi, String passwordMI, String yobMI, String module,
+			String execution) {
 		super();
 		this.referNo = referNo;
 		this.userIdEQ = userIdEQ;
@@ -44,7 +48,11 @@ public class ExecutionModel {
 		this.passwordMI = passwordMI;
 		this.yobMI = yobMI;
 		this.module = module;
+		this.execution = execution;
 	}
+
+
+
 	public String getReferNo() {
 		return referNo;
 	}
@@ -111,13 +119,25 @@ public class ExecutionModel {
 	public void setModule(String module) {
 		this.module = module;
 	}
+
+	public String getExecution() {
+		return execution;
+	}
+	public void setExecution(String execution) {
+		this.execution = execution;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "ExecutionModel [referNo=" + referNo + ", userIdEQ=" + userIdEQ + ", passwordEQ=" + passwordEQ
 				+ ", yobEQ=" + yobEQ + ", userIdCO=" + userIdCO + ", passwordCO=" + passwordCO + ", yobCO=" + yobCO
 				+ ", userIdMi=" + userIdMi + ", passwordMI=" + passwordMI + ", yobMI=" + yobMI + ", module=" + module
-				+ "]";
+				+ ", execution=" + execution + "]";
 	}
+	
+	
 	
 	
 

@@ -57,14 +57,14 @@ public class WatchListTextfield extends SeleniumCoder{
 		checkClickableOrNot(createButton,  "Create button");
 		if(createButton.isDisplayed()) {
 			errorList.add("============@@> Verify create button after leave watchlist texfield blank <@@============");
-			errorList.add(ScreenshortProvider.captureScreen(driver, "blankTextfieldWithCreateButton"));
+			errorList.add(ScreenshortProvider.captureScreen(driver, "blankTextfieldWithCreateButton","Watchlist"));
 			clearAndSendKey(watchListNameTextfield, "Watchlist","WatchList textfield");
 			errorList.add(createButtonMsg);
-			errorList.add(ScreenshortProvider.captureScreen(driver, "writeTextfieldWithCreateButton"));
+			errorList.add(ScreenshortProvider.captureScreen(driver, "writeTextfieldWithCreateButton","Watchlist"));
 			clearTextfield(watchListNameTextfield,"WatchList textfield");
 			if(createButton.isDisplayed()) {
 				errorList.add("============@@> Verify create button after clear text than again check state of create button <@@============");
-				errorList.add(ScreenshortProvider.captureScreen(driver, "writeblankTextfieldWithCreateButton"));
+				errorList.add(ScreenshortProvider.captureScreen(driver, "writeblankTextfieldWithCreateButton","Watchlist"));
 				errorList.add("Please enter wathclist name-FAIL");
 				errorList.add("============@@> Verify Maxmum char allowed entering name in watchList Text field  <@@============");
 				errorList.add("Maximum 6 digit allow to enter in watchlist textfield-PASS");
@@ -81,7 +81,7 @@ public class WatchListTextfield extends SeleniumCoder{
 			
 			//extraScenario.watchListCreate(watchListName, step, clickCancelOrNot, watchListDeleteOrNot);
 			
-			errorList.add(ScreenshortProvider.captureScreen(driver, "AfterAdding"+noWatchName+"Watchlist"));
+			errorList.add(ScreenshortProvider.captureScreen(driver, "AfterAdding"+noWatchName+"Watchlist","Watchlist"));
 			String watchListName1=common.watchListtabNotFound(watchListName, "create", exchange);
 			errorList.add("WatchList name : "+help.commpareTwoString(watchListName, noWatchName));
 			errorList.add("User can create watchList with number-PASS");

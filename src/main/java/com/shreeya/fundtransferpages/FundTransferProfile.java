@@ -132,7 +132,7 @@ public class FundTransferProfile extends SeleniumCoder{
 		if(popupTitle!=null)
 			detailList.add("Add new UPI id popup display");
 		detailList.add("Popup Titile :  "+help.elementPresent(popupTitle, "Add new UPI id popup"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AddNewPopupUPIid"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AddNewPopupUPIid","FundTransfer"));
 	}
 	
 	public boolean fillAddNewUPIForm(String bankName,String upiStr,boolean failCase) {
@@ -171,7 +171,7 @@ public class FundTransferProfile extends SeleniumCoder{
 		detailList.add("@@> Verify UPI id field by entering the invalid(incomplete ID) UPI id in add funds page and click on submit. <@@");
 		fillAddNewUPIForm("HDFC BANK LTD.", "ABC@", true);
 		detailList.add("Error msg : "+upiErrorMsg+"-PASS");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "AddNewUPIFormWithInvalidInProfile"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "AddNewUPIFormWithInvalidInProfile","FundTransfer"));
 	}
 	
 	public void closeAddNewUPIForm() {
@@ -181,7 +181,7 @@ public class FundTransferProfile extends SeleniumCoder{
 		clickElement(closeAddNewUpiPopup, "close add new upi popup");
 		upiDetailLabel=fluentWaitCodeXpath("//h5[text()='UPI Details']", "UPI detail label");
 		detailList.add(help.elementPresent(upiDetailLabel, "popup close","popu does not close"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "closeAddNewUPIForm"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "closeAddNewUPIForm","FundTransfer"));
 	}
 	
 	
@@ -193,7 +193,7 @@ public class FundTransferProfile extends SeleniumCoder{
 		help.elementDisappear("//h5[text()='Add New UPI ID']", "New Upi id title", 6);
 		payAmount=fundTransferUPI_Id.verifyPayAmountWithAmout("50");
 		detailList.add(payAmount+"-PASS");
-		detailList.add(ScreenshortProvider.captureScreen(driver, "ServiceProviderPage"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "ServiceProviderPage","FundTransfer"));
 		detailList.add("@@> Verify message id displayed for verifying the UPI id on Add new UPI id window. <@@");
 		detailList.add(help.commpareTwoString(fityRsMsg, "To verify UPI ID you need to transfer ₹50 to your demat account"));
 		detailList.add("@@> Verify after entering the UPI id which is linked to bank account in add new UPI id. <@@");
@@ -210,7 +210,7 @@ public class FundTransferProfile extends SeleniumCoder{
 		redirectToProfile();
 		addNewUPILink();
 		fillAddNewUPIForm("Kotak Mahindra Bank", "qrtest1@hdfcbank", true);
-		detailList.add(ScreenshortProvider.captureScreen(driver, "ValidUPIidWithDiffBank"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "ValidUPIidWithDiffBank","FundTransfer"));
 		if(upiErrorMsg==null)
 		{
 			staticWait(3000);
@@ -250,7 +250,7 @@ public class FundTransferProfile extends SeleniumCoder{
 		Reporter.log("===> screenshotWithElement <===", true);
 		WebElement element=fluentWaitCodeXpath(xpathString, elementName);
 		scroll.scrollAndPointToElement(element);
-		return ScreenshortProvider.captureScreen(driver,screenshotName);
+		return ScreenshortProvider.captureScreen(driver,screenshotName,"FundTransfer");
 	}
 	
 }

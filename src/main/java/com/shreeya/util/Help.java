@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -16,8 +17,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.shreeya.alertandnotification.AlterAndNotificationCommon;
-import com.shreeya.experiment.Report;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 
 public class Help extends SeleniumCoder{
 	WebDriver driver;
@@ -331,7 +332,8 @@ public class Help extends SeleniumCoder{
 		Reporter.log("Screenshot : "+screenshotPath, true);
 		try {
 			
-			 test.addScreenCaptureFromPath(screenshotPath);
+			 //test.addScreenCaptureFromPath(screenshotPath);
+			 test.log(Status.INFO, "", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -778,6 +780,7 @@ public class Help extends SeleniumCoder{
 			pageRefresh();
 		staticWait(700);
 	}
+	
 	
 	
 

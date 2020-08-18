@@ -63,11 +63,11 @@ public class LoginPage extends SeleniumCoder {
 
 	}
 
-	public void loginExecution(String scenario, LatestLoginModel loginModelObject) {
+	public void loginExecution(String scenario, LatestLoginModel loginModelObject, WebDriver loginDriver) {
 		// driver=browserLaunch(scenario);
 		LoginTestModel loginTestModel=null;
 		if (!loginModelObject.getModule().equalsIgnoreCase("login")) {
-			popupFlag=loginCodeExecution(scenario, loginModelObject);
+			loginDriver=loginCodeExecution(scenario, loginModelObject);
 		} else {
 			ExtendReporter extend = new ExtendReporter(MyTestLauncher.reportFolderPath[1], "LoginRegression", 0);
 			CsvReaderCode csvReader = new CsvReaderCode();
@@ -94,7 +94,7 @@ public class LoginPage extends SeleniumCoder {
 		// return driver;
 	}
 
-	public boolean loginCodeExecution(String scenario, LatestLoginModel loginModelObject){
+	public WebDriver loginCodeExecution(String scenario, LatestLoginModel loginModelObject){
 
 		Reporter.log("LoginPage : loginExecution ", true);
 		clickOnLoginButton(driver);
@@ -190,7 +190,7 @@ public class LoginPage extends SeleniumCoder {
 				clickElement(popupButton, "No thans popup button");
 			}
 		Reporter.log("PopupError flag================================================> "+popupFlag, true);
-		return popupFlag;
+		return driver;
 		
 	}
 

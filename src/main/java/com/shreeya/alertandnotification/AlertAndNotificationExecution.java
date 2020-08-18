@@ -9,6 +9,7 @@ import com.shreeya.MyTestLauncher;
 import com.shreeya.model.AlertAndNotificationModel;
 import com.shreeya.util.CsvReaderCode;
 import com.shreeya.util.ExtendReporter;
+import com.shreeya.util.FolderStructure;
 import com.shreeya.util.SeleniumCoder;
 
 public class AlertAndNotificationExecution extends SeleniumCoder{
@@ -20,6 +21,7 @@ public class AlertAndNotificationExecution extends SeleniumCoder{
 	Iterator<AlertAndNotificationModel> iterator;
 	AlterAndNotificationCommon common;
 	AlterTestCase alterTestCase;
+	FolderStructure folderStructure;
 	
 	public AlertAndNotificationExecution(WebDriver driver) {
 		super(driver);
@@ -28,11 +30,13 @@ public class AlertAndNotificationExecution extends SeleniumCoder{
 		alertAndNotificationPage=new AlertAndNotificationPage(driver);
 		common=new AlterAndNotificationCommon(driver);
 		alterTestCase=new AlterTestCase(driver);
+		folderStructure=new FolderStructure();
 	}
 
 	public void alertAndNotificationExecute(String segment) {
 		Reporter.log("=====> alertAndNotificationExecute <=====", true);
-		ExtendReporter reporter=new ExtendReporter(MyTestLauncher.reportFolderPath[1], "Alert", 0);
+		//ExtendReporter reporter=new ExtendReporter(MyTestLauncher.reportFolderPath[1], "Alert", 0);
+		ExtendReporter reporter=new ExtendReporter(System.getProperty("user.dir")+"/AlertAndNotification", "Alert", 0);
 		iterator=csvReader.alertAndNotificationTestDataProvider();
 		common.redirectToAlterAndNotificationModule(true);
 		while(iterator.hasNext()) {
@@ -44,6 +48,7 @@ public class AlertAndNotificationExecution extends SeleniumCoder{
 				 alertAndNotificationPage.alertExecution(model,reporter,segment);
 			 }
 		reporter.logFlush();
+		folderStructure.copyFolderThenDelete(System.getProperty("user.dir")+"/AlertAndNotification",MyTestLauncher.reportFolderPath[0]);
 		}
 	}
 }

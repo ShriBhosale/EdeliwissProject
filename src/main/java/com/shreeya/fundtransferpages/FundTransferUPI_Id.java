@@ -166,7 +166,7 @@ public class FundTransferUPI_Id extends SeleniumCoder{
 		Reporter.log("===> primaryUPIId <===",true);
 		detailList.add("@@> Verify Primary ID which is set as default is displayed in drop down. <@@");
 		upiDropDown();
-		detailList.add(ScreenshortProvider.captureScreen(driver, "PrimaryUPI_id"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "PrimaryUPI_id","FundTransfer"));
 		upiTextfield=fluentWaitCodeXpath("//input[@id='upiIdTxt']", "UPI textfield");
 		if(elementPresentOrNot(upiTextfield)==false) {
 		upiDropDowntext=getValueFromAttribute(upiDropdownButton, "value", "UPI dropdow button");
@@ -256,7 +256,7 @@ public class FundTransferUPI_Id extends SeleniumCoder{
 		deleteNoButton=fluentWaitCodeXpath("//label[text()='Delete']//following::button[2]", "Delete No button");
 		yesButton=getValueFromAttribute(deleteYesButton,"value", "Delete Yes buttton");
 		noButton=getValueFromAttribute(deleteNoButton,"value", "Delete No buttton");
-		upiDeleteScreenshot=ScreenshortProvider.captureScreen(driver, "UPIDeleteScreenshot");
+		upiDeleteScreenshot=ScreenshortProvider.captureScreen(driver, "UPIDeleteScreenshot","FundTransfer");
 		if(yesButton.equalsIgnoreCase("Yes")&&noButton.equalsIgnoreCase("No")) {
 			DeleteYesNoButtonStr="Yes and No button is present...";
 		}else {
@@ -269,7 +269,7 @@ public class FundTransferUPI_Id extends SeleniumCoder{
 			clickElement(deleteNoButton, "No button from delete popup");
 			verifyDeletedUPI("cup@hdfcbank",deleteFlag);
 		}
-		upideleteOrNotScreenshot=ScreenshortProvider.captureScreen(driver, "UPIDeletedOrNot");
+		upideleteOrNotScreenshot=ScreenshortProvider.captureScreen(driver, "UPIDeletedOrNot","FundTransfer");
 		manageOptionTitle=fluentWaitCodeXpath("//h5[text()='Manage UPI IDs']", "Manage Upi title");
 		if(fetchTextFromElement(manageOptionTitle).equalsIgnoreCase("Manage UPI IDs")) {
 			manageBackButton=fluentWaitCodeXpath("//a[text()='Back']", "UPI manage back button");
@@ -316,7 +316,7 @@ public class FundTransferUPI_Id extends SeleniumCoder{
 		neftStr=fetchTextFromElement(neftLabel);
 		detailList.add(help.commpareTwoString(neftStr, "Add our bank account and transfer funds through NEFT/RTGS/IMPS"));
 		eCollectBankDetail();
-		detailList.add(ScreenshortProvider.captureScreen(driver, "eCollectBank"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "eCollectBank","FundTransfer"));
 		}
 	}
 	
@@ -350,7 +350,7 @@ public class FundTransferUPI_Id extends SeleniumCoder{
 			
 			}
 		}
-		detailList.add(ScreenshortProvider.captureScreen(driver, "redriectToUPIService"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "redriectToUPIService","FundTransfer"));
 		fundTransferCommon.backFundTransferPage();
 	}
 	
@@ -434,7 +434,7 @@ public class FundTransferUPI_Id extends SeleniumCoder{
 		staticWait(4000);
 		fundTransferCommon.elementDisappear("//a[text()='TRANSFER STATUS']//preceding::a[text()='Add Funds']");
 		detailList.add(verifyPayAmountWithAmout("60"));
-		detailList.add(ScreenshortProvider.captureScreen(driver, "UPITimer"));
+		detailList.add(ScreenshortProvider.captureScreen(driver, "UPITimer","FundTransfer"));
 		do {
 			staticWait(5000);
 			retryButton = fluentWaitCodeXpath("//a[text()='Retry']",30, "Retry button");
@@ -446,7 +446,7 @@ public class FundTransferUPI_Id extends SeleniumCoder{
 			timerLableFlag=true;
 		}else {
 			detailList.add("5 minite timer is complete-PASS");
-			detailList.add(ScreenshortProvider.captureScreen(driver, "UPITimerDone"));
+			detailList.add(ScreenshortProvider.captureScreen(driver, "UPITimerDone","FundTransfer"));
 			upiTimerDoneMsg=fluentWaitCodeXpath("//label[@class='redirectInfo']",30,"UPI timer done");
 			if(upiTimerDoneMsg!=null) {
 				//need to check xpath
