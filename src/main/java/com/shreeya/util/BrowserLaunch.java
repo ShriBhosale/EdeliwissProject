@@ -1,5 +1,6 @@
 package com.shreeya.util;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
@@ -15,12 +16,17 @@ public class BrowserLaunch {
 
 	public WebDriver browserLaunch(String scenario) throws MalformedURLException {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\grid\\chromedriver.exe");
+		killChromeDriver();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--incognito");
+		//cash clear 2 line
+		options.addArguments("disable-infobars");
+		options.addArguments("start-maximized");
 
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-		
+		//cash clear
+		capabilities.setCapability("applicationCacheEnabled", false);
 		//Hub hub = FunctionKeyword.getHub();
 		if (!scenario.equalsIgnoreCase("Partial Order")) {
 
@@ -50,6 +56,15 @@ public class BrowserLaunch {
 		driver.manage().deleteAllCookies();
 		Reporter.log("Browser Launch", true);
 		return driver;
+	}
+	
+	public void killChromeDriver() {
+		try {
+			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
