@@ -249,6 +249,7 @@ public class FunctionKeyword {
 			}
 			//unComment
 			//htmlReport.captureScreen(driver, MyTestLauncher.reportFolderPath[2], "beforLogout", 1);
+			Reporter.log("Module name : "+module, true);
 			if(!module.equalsIgnoreCase("login"))
 			login.logout(LoginExecution.loginWebDriver);
 			

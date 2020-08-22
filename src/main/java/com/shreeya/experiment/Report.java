@@ -24,7 +24,7 @@ public class Report {
 	public ExtentTest test = null;
 	public Report() {
 		
-		htmlextent = new ExtentHtmlReporter("E:\\EdelweissProject\\DigitalWebPlatformAutomation\\report\\ExtendReport.html");
+		htmlextent = new ExtentHtmlReporter("E:\\EdelweissProject\\EuatReport\\ExtendReport.html");
 
 		report = new ExtentReports();
 		//htmlextent.config().setReportName();
@@ -34,11 +34,20 @@ public class Report {
 	
 	public void createTest(String testName) {
 		test=report.createTest(testName);
+		test.log(Status.INFO, "Shreeya Friends name :)");
 	}
 	
 	public void printLog(String msg) {
 		test.log(Status.INFO, msg);
 	}
+	
+	public void printLog(String msg,boolean passOrNot) {
+		if(passOrNot)
+			test.log(Status.PASS, msg);
+		else
+			test.log(Status.FAIL, msg);
+	}
+
 	
 	public  String captureScreen(WebDriver driver)  {
 		//String screenshotPath="E:\\EdelweissProject\\TestData\\TestData\\OrangeHRM\\Screenshot\\Screenshot.png";
