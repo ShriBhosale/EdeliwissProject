@@ -27,7 +27,7 @@ public class Execution extends WebCode {
 		Execution execute=new Execution(driver);
 		ModulePage page=new ModulePage(driver);
 		LoginPage login=new LoginPage(driver);
-		Report report=new Report();
+		//Report report=new Report("SDfsdf"+driver);
 		
 		LatestLoginModel loginModelObject=new LatestLoginModel(1, "60003800", "abc123", "2000", "OrderDetail", "Equity");
 		login.loginCodeExecution("Abc", loginModelObject);
@@ -44,7 +44,7 @@ public class Execution extends WebCode {
 			String [] moduleNameArray=module.split("-");
 			report.createTest(moduleNameArray[1]);
 			try {
-			page.executeModule(moduleNameArray[0],moduleNameArray[1]);
+			//page.executeModule(moduleNameArray[0],moduleNameArray[1]);
 			report.printLog("Element Name : "+moduleNameArray[1]+" Tab",true);
 			
 			}catch(NullPointerException e) {

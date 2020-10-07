@@ -82,7 +82,7 @@ public class FolderStructure {
 				
 	}
 	
-	public String reportPathProvider() {
+	public String reportPathProviderOld() {
 		ConfigReader reader=new ConfigReader();
 		String reportPath=reader.configReader("Result");
 		
@@ -96,6 +96,21 @@ public class FolderStructure {
 		return path;
 	}
 
+	public String reportPathProvider() {
+		ConfigReader reader=new ConfigReader();
+		String reportPath=reader.configReader("Result");
+		
+		/*
+		 * Reporter.log("Report Path ======> "+reportPath,true); String
+		 * replaceStr=reportPath.replace("\\", "-"); String []
+		 * reportPathArray=replaceStr.split("/"); String
+		 * path="../"+reportPathArray[reportPathArray.length-1]+"/Report";
+		 */
+		  
+		  Reporter.log("Path ====> "+reportPath, true);
+		 
+		return reportPath+"//Report";
+	}
 	public void copyFolderThenDelete(String sourcesFolderPath,String targetFolderPath) {
 		String [] folderNameArray=help.separater(sourcesFolderPath, "/");
 		 File from = new File(sourcesFolderPath.trim());
@@ -110,5 +125,7 @@ public class FolderStructure {
 				ex.printStackTrace();
 			}
 	}
+	
+	
 	
 }

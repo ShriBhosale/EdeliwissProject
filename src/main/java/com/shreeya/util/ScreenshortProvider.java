@@ -38,4 +38,23 @@ public class ScreenshortProvider extends SeleniumCoder{
 		}
 		return dest;
 	}
+	
+	public static String captureScreen(WebDriver driver,String moduleNameWithReferNo)  {
+		staticWaitStatic(800);
+		helperObject=new HelperCode();
+		Reporter.log("Capture Screenshot : "+moduleNameWithReferNo,true);
+		TakesScreenshot screen = (TakesScreenshot) driver;
+		File src = screen.getScreenshotAs(OutputType.FILE);
+		//String dest =MyTestLauncher.reportFolderPath[2]+"/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
+		String dest =MyTestLauncher.reportFolderPath[2]+"/"+moduleNameWithReferNo+"_"+helperObject.timeStampGenerator()+".png";
+		File target = new File(dest);
+		try {
+			FileUtils.copyFile(src, target);
+			src.delete();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dest;
+	}
 }

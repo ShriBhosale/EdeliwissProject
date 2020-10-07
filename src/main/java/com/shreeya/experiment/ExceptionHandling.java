@@ -7,15 +7,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
+import com.shreeya.practiesWatchList.ServerLogMode;
+import com.shreeya.practiesWatchList.ServerReport;
+import com.shreeya.practiesWatchList.ServerReport;
+import com.shreeya.util.ScreenshortProvider;
+
 public class ExceptionHandling {
 	
 	Report report;
 	WebDriver driver;
 	static String elementName;
 	static String exceptionString;
+	ServerReport log;
+	static String failTaskScreenshot;
 	
 	public ExceptionHandling(WebDriver driver) {
 		this.driver=driver;
+		log=new ServerReport();
 	}
 	
 	public static void nullPointerHandler(String elementName) {
@@ -43,19 +51,31 @@ public class ExceptionHandling {
 	
 	public void printException(Exception e) {
 		StackTraceElement [] locaString=e.getStackTrace();
-		Reporter.log("<b>Exception Name : </b>" + e.toString() + "<br><b>Element Name : </b>" + elementName,true);
-		Reporter.log("<b>Exception location : </b>", true);
+		log.serverLog("<b>Exception Name : </b>" + e.toString() + "<br><b>Element Name : </b>" + elementName, ServerLogMode.DEBUG);
+		log.serverLog("<b>Exception location : </b>", ServerLogMode.DEBUG);
 		for(StackTraceElement st:locaString) {
 			if(st.toString().contains("com.shreeya")) {
 				System.out.println("<br>"+st.toString());
+				log.serverLog("<br>"+st.toString(), ServerLogMode.DEBUG);
 			}
 		}
+	}
+	
+	private void elementNotInteractableException(WebElement element, String action, Exception e) {
+		
+		printException(e);
+		element=null;
+		element.toString();
+		
 	}
 	
 	public void exceptionHandler(String exceptionName,String elementName,String action,WebElement element,Exception e) {
 		this.elementName=elementName;
 		this.exceptionString=exceptionName;
-		report=new Report();
+		this.failTaskScreenshot=ScreenshortProvider.captureScreen(driver,elementName+"Fail To Locate");
+		log.serverLog("ElementName : "+elementName, ServerLogMode.DEBUG);
+		log.serverLog("Exception Name : "+exceptionString, ServerLogMode.DEBUG);
+		//report=new Report(M);
 		switch(exceptionName) {
 		
 		case "NullPointer":
@@ -69,8 +89,13 @@ public class ExceptionHandling {
 			break;
 		case "NoSuchElementException":
 			noSuchElementExceptionHandle(element,action,e);
+			break;
+		case "ElementNotInteractableException" :
+			elementNotInteractableException(element,action,e);
 			
 		}
 	}
+
+	
 	
 }

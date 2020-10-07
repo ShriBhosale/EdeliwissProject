@@ -1,5 +1,6 @@
 package com.shreeya.util;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +22,7 @@ public class BrowserLaunch {
 
 	public WebDriver browserLaunch(String scenario) {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\grid\\chromedriver.exe");
-	
+		killChromeDriver();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--incognito");
 		//cash clear 2 line
@@ -77,9 +78,19 @@ public class BrowserLaunch {
 	
 	public void driverClose() {
 		try {
-			driver.close();
+			if(driver!=null)
+				driver.close();
 		}catch(NoSuchSessionException e) {
 			Reporter.log("Driver already close", true);
+		}
+	}
+	
+	public void killChromeDriver() {
+		try {
+			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

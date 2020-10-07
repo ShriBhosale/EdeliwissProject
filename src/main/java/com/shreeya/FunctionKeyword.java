@@ -29,6 +29,7 @@ import com.shreeya.mypositionspages.MyPositionsExecution;
 import com.shreeya.orderdetailpages.LoginExecution;
 import com.shreeya.orderdetailpages.LoginPage;
 import com.shreeya.orderdetailpages.OrderAction;
+import com.shreeya.practiesWatchList.WatchListExecution;
 import com.shreeya.seeholdingspages.SeeHoldingsExecution;
 import com.shreeya.seemarginpages.SeeMarginExecution;
 import com.shreeya.util.ApacheCode;
@@ -38,7 +39,6 @@ import com.shreeya.util.CustomListener;
 import com.shreeya.util.ExtendReporter;
 import com.shreeya.util.FolderStructure;
 import com.shreeya.util.HelperCode;
-import com.shreeya.watchlistPages.WatchListMainExecution;
 
 @Listeners(CustomListener.class)
 public class FunctionKeyword {
@@ -77,8 +77,7 @@ public class FunctionKeyword {
 
 		Reporter.log("Execution Before ", true);
 		 browserLunch = new BrowserLaunch();
-		driver = browserLunch.browserLaunch("Normal");
-		login = new LoginPage(driver);
+		
 		//orderActioObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
 		testDataObject = new TestDataModel();
 		helperObject = new HelperCode();
@@ -103,6 +102,8 @@ public class FunctionKeyword {
 	public void executionWithKeyword(String referenceNo, String userIdEQ, String pwdEQ, String yobEQ, String userIdCO, String pwdCO, String yobCO,String userIdMI, String pwdMI, String yobMI, String module,String execution) throws InterruptedException, IOException {
 		if(execution.equalsIgnoreCase("Yes")) {
 		CsvReaderCode code = new CsvReaderCode();
+		driver = browserLunch.browserLaunch("Normal");
+		login = new LoginPage(driver);
 		Reporter.log("<b><==================== Function KeyWord : executionWithKeyword ================></b>", true);
 		Reporter.log("Before Iterator " + referenceNo);
 		Map<Boolean,WebDriver> loginDriverMap;
@@ -201,9 +202,11 @@ public class FunctionKeyword {
 				break;
 				
 			case "watchlist":
-				WatchListMainExecution watchListObj = new WatchListMainExecution(LoginExecution.loginWebDriver);
+				//WatchListMainExecution watchListObj = new WatchListMainExecution(LoginExecution.loginWebDriver);
+				WatchListExecution watchListObj=new WatchListExecution(LoginExecution.loginWebDriver);
+				/* watchListObj.watchListExecute(segmentStr); */
 				if(skipScenario==false)
-					watchListObj.watchListExecute(segmentStr);
+					watchListObj.watchListExecute();
 				Reporter.log("Watchlist Module", true);
 				break;
 				

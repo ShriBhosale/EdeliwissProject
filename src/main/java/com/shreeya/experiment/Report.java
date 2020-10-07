@@ -2,6 +2,7 @@ package com.shreeya.experiment;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -15,26 +16,32 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.shreeya.MyTestLauncher;
+import com.shreeya.practiesWatchList.ServerLogMode;
+import com.shreeya.practiesWatchList.ServerReport;
 import com.shreeya.util.Help;
 import com.shreeya.util.HelperCode;
+import com.shreeya.util.ScreenshortProvider;
 
 public class Report {
 	public ExtentHtmlReporter htmlextent = null;
 	public ExtentReports report = null;
 	public ExtentTest test = null;
-	public Report() {
-		
-		htmlextent = new ExtentHtmlReporter("E:\\EdelweissProject\\EuatReport\\ExtendReport.html");
+	WebDriver driver;
+	ServerReport log;
+	private Help help;
+	public Report(String reportPath,WebDriver driver) {
+		this.driver=driver;
+		htmlextent = new ExtentHtmlReporter(reportPath+"\\WatchListReport.html");
 
 		report = new ExtentReports();
 		//htmlextent.config().setReportName();
 		report.attachReporter(htmlextent);
-		
+		log=new ServerReport();
 	}
 	
 	public void createTest(String testName) {
 		test=report.createTest(testName);
-		test.log(Status.INFO, "Shreeya Friends name :)");
+		
 	}
 	
 	public void printLog(String msg) {
@@ -78,15 +85,51 @@ public class Report {
 	}
 	
 	public void addScreenshot(String screenshotPath) {
+		log.serverLog("Screenshot path : "+screenshotPath, ServerLogMode.DEBUG);
 		try {
-			test.log(Status.INFO, "WatchList", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+			test.log(Status.INFO, "", MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	public void failReport() {
+		printLog("Element Name : "+ExceptionHandling.elementName, false);
+		printLog("Exception Name : "+ExceptionHandling.exceptionString, false);
+		addScreenshot(ExceptionHandling.failTaskScreenshot);
+	}
+	
 	public void logFlush() {
+		
 		report.flush();
 	}
+	
+	public void print(List<String> printList) {
+		
+		help = new Help();
+		int i = -1;
+		for (String msg : printList) {
+			i++;
+			if (msg != null) {
+				String[] array = help.separater(msg, "-");
+				if (msg.contains("-")) {
+					if (array[1].equalsIgnoreCase("PASS")) {
+						test.log(Status.PASS, array[0]);
+					} else {
+						test.log(Status.FAIL, array[0]);
+					}
+				} else if (msg.contains("@@>")) {
+					Reporter.log(msg, true);
+					test.log(Status.INFO, "<b>===" + msg + "===</b>");
+				} else if (msg.contains("Screenshort")) {
+					help.screenshotFullPath(msg, test);
+				} else if (msg.equalsIgnoreCase("No")) {
+					continue;
+				} else {
+					test.log(Status.INFO, array[0]);
+				}
+			}
+		}
+		}
 }
