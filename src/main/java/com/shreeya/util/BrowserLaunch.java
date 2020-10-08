@@ -16,7 +16,7 @@ public class BrowserLaunch {
 
 	public WebDriver browserLaunch(String scenario) throws MalformedURLException {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\grid\\chromedriver.exe");
-		killChromeDriver();
+		killChromeDriver(scenario);
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--incognito");
 		//cash clear 2 line
@@ -48,7 +48,7 @@ public class BrowserLaunch {
 			driver=new ChromeDriver(capabilities);
 		}
 		//((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
-		driver.manage().timeouts().pageLoadTimeout(200, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(900, TimeUnit.SECONDS);
 
 		// driver.get("https://www.google.com/");
 		driver.get("https://ewuat.edelbusiness.in/ewhtml/");
@@ -58,13 +58,14 @@ public class BrowserLaunch {
 		return driver;
 	}
 	
-	public void killChromeDriver() {
-		try {
-			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void killChromeDriver(String scenario) {
+		if(!scenario.equalsIgnoreCase("Partial Order")) {
+		  try {
+			  Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T"); 
+		  }
+		  catch (IOException e) { // TODO Auto-generated catch block
+		  e.printStackTrace(); }
+		 }
 	}
 
 }

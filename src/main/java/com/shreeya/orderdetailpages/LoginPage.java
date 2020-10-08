@@ -125,7 +125,7 @@ public class LoginPage extends SeleniumCoder {
 				userIdTextField = fluentWaitCodeId(driver, "userID", 100);
 				Reporter.log("After locate userId", true);
 			} catch (TimeoutException e) {
-				Reporter.log("User id not found now again click onLogin button");
+				Reporter.log("User id not found now again click onLogin button",true);
 
 			}
 		} while (userIdTextField == null);

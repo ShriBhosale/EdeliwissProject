@@ -140,7 +140,7 @@ public class FunctionKeyword {
 			case "fundtransfer":
 				FundTransferExecution fundTransferObj = new FundTransferExecution(driver);
 				fundTransferObj.fundTransferExecute();
-				Reporter.log("fun transfer executin", true);
+				Reporter.log("fundtransfer executin", true);
 				break;
 			case "mypositions":
 				MyPositionsExecution myPositionObj = new MyPositionsExecution(driver);

@@ -44,7 +44,7 @@ public class PartialOrderPage extends SeleniumCoder {
 		Reporter.log("Partial Order : Order Detail ", true);
 		HelperCode helperCodeObj=new HelperCode();
 		//orderNo++;
-		String orderStatus=helperCodeObj.outputProcessor(driver, "Partial Order", orderNo, "Open", model,0);
+		String orderStatus=helperCodeObj.outputProcessor(driver,"Partial Order", orderNo,"Open", model,0);
 		if(orderStatus.equalsIgnoreCase("complete")||orderStatus.equalsIgnoreCase("open")) {
 			placeOrderLink=fluentWaitCodeXpath(driverBuyOrder,"//a[text()='Place Order']");
 			clickElement(placeOrderLink, "Place Order link");

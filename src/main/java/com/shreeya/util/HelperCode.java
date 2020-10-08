@@ -189,7 +189,7 @@ public class HelperCode {
 		pathArray = screenShotAndReportPath(driver, report,folderPathArray[2],model.getScenario(),orderNo);
 		orderDetailArray[16] = pathArray[0];
 		orderDetailArray[17] = pathArray[1];
-		if(!(action.equalsIgnoreCase("Partial Order")&& newOrderStatus.equalsIgnoreCase("Open")))
+		//if(!(action.equalsIgnoreCase("Partial Order")&& newOrderStatus.equalsIgnoreCase("Open")))
 			report.logFlush();
 		FunctionKeyword.apacheCodeObj.outputFileWriter(orderDetailArray, orderNo);
 		//excelWriter.excelWriter(orderDetailArray, orderNo);
