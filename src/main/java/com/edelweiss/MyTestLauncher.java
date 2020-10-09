@@ -22,7 +22,7 @@ public class MyTestLauncher {
 	public static FolderStructure folderCreationObj;
 	public static String [] reportFolderPath;
 	
-	public MyTestLauncher() throws IOException {
+	public MyTestLauncher(){
 		 folderCreationObj = new FolderStructure();
 		 reportFolderPath = folderCreationObj.reportFolderCreator();
 	}

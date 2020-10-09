@@ -22,7 +22,7 @@ public class BrowserLaunch {
 
 	public WebDriver browserLaunch(String scenario) {
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\grid\\chromedriver.exe");
-		killChromeDriver();
+		killChromeDriver(scenario);
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--incognito");
 		//cash clear 2 line
@@ -85,12 +85,14 @@ public class BrowserLaunch {
 		}
 	}
 	
-	public void killChromeDriver() {
+	public void killChromeDriver(String scenario) {
+		if(!scenario.equalsIgnoreCase("Partial Order")) {
 		try {
 			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 	}
 

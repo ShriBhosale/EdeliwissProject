@@ -94,8 +94,8 @@ public class WatchListStepVerify extends SeleniumCoder {
 		detailList=new ArrayList<String>();
 		Reporter.log("<========== verifyCodePage ==============>", true);
 		String [] scritNameArr=help.separater(errorList.get(0),"&");
-		String [] scriptNameArray=help.commaSeparater(model.getFullScriptName());
-		String [] tradingSymbolArray=help.commaSeparater(model.getVerifyScript());
+		String [] scriptNameArray=help.commaSeparator(model.getFullScriptName());
+		String [] tradingSymbolArray=help.commaSeparator(model.getVerifyScript());
 
 		String [] exchangeArray=WatchListPage.exchangeArray;
 		if(scritNameArr[0].equalsIgnoreCase(scriptNameArray[scriptNameArray.length-1])){
@@ -238,7 +238,7 @@ public class WatchListStepVerify extends SeleniumCoder {
 		count--;
 		//createCount=2;
 		/* createAddDetailList=new ArrayList<String>(); */
-		verifyScriptNames=help.commaSeparater(model.getVerifyScript());
+		verifyScriptNames=help.commaSeparator(model.getVerifyScript());
 		detailList=new ArrayList<String>();
 		Reporter.log("verifyCreateAdd : count =====> "+count, true);
 		Reporter.log("createCount=================> "+createCount+"\nrowStartCount===============> "+rowStartCount, true);

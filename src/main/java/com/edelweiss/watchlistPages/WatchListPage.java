@@ -149,10 +149,10 @@ public class WatchListPage extends SeleniumCoder {
 			rowStartCount++;
 		}
 
-		scriptArray = help.commaSeparater(scriptNames);
-		exchangeArray = help.commaSeparater(exchanges);
-		applicationScriptArray = help.commaSeparater(model.getVerifyScript());
-		watchListNameArray = help.commaSeparater(watchListName);
+		scriptArray = help.commaSeparator(scriptNames);
+		exchangeArray = help.commaSeparator(exchanges);
+		applicationScriptArray = help.commaSeparator(model.getVerifyScript());
+		watchListNameArray = help.commaSeparator(watchListName);
 		if(!model.getWatchListName().equalsIgnoreCase("123456")) {
 		errorList = new ArrayList<String>();
 		}
@@ -278,7 +278,7 @@ public class WatchListPage extends SeleniumCoder {
 	public void addScript(WatchListModel model, String step) {
 		Reporter.log("====> add Script ====>", true);
 		List<String> errList=new ArrayList<String>();
-		verifyScriptArray = help.commaSeparater(model.getVerifyScript());
+		verifyScriptArray = help.commaSeparator(model.getVerifyScript());
 		String xpathString = "no xpath for script";
 		String dropdownOptionStr = null;
 		String text = null;
@@ -422,7 +422,7 @@ public class WatchListPage extends SeleniumCoder {
 		watchListCommon.pageVerify(model, "AddScript");
 		/* errorList.add("Before Delete Script and WatchList...."+"-"+watchListName); */
 		errorList.add(ScreenshortProvider.captureScreen(driver, "BeforeDeleteScript","Watchlist"));
-		scriptNameArray = help.commaSeparater(model.getVerifyScript());
+		scriptNameArray = help.commaSeparator(model.getVerifyScript());
 		int scriptCount = scriptNameArray.length + 2;
 		for (int i = 2; i < scriptCount; i++) {
 			scriptNameLabel = fluentWaitCodeXpath("//*[@id=\"contentCntr\"]/div/div/div[1]/div[3]/div/div/div/div/div[2]/div["+i+"]/div[1]/div[1]/a","Script Name");
@@ -608,7 +608,7 @@ public class WatchListPage extends SeleniumCoder {
 		 */
 		
 
-		scriptNameArray = help.commaSeparater(model.getVerifyScript());
+		scriptNameArray = help.commaSeparator(model.getVerifyScript());
 		int scriptCount = scriptNameArray.length + 2;
 		for (int i = 2; i < scriptCount; i++) {
 			scriptNameLabel = fluentWaitCodeXpath("//*[@id=\"contentCntr\"]/div/div/div[1]/div[3]/div/div/div/div/div[2]/div["+i+"]/div[1]/div[1]/a","Script Name");

@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
+import com.opencsv.CSVWriter;
 import com.edelweiss.MyTestLauncher;
 import com.edelweiss.model.LatestLoginModel;
 import com.edelweiss.model.LoginTestModel;
@@ -21,7 +22,6 @@ import com.edelweiss.util.CsvReaderCode;
 import com.edelweiss.util.ExtendReporter;
 import com.edelweiss.util.Help;
 import com.edelweiss.util.SeleniumCoder;
-import com.opencsv.CSVWriter;
 
 public class LoginPage extends SeleniumCoder {
 
@@ -55,6 +55,9 @@ public class LoginPage extends SeleniumCoder {
 	public  boolean popupFlag=false;
 	private WebElement notNowWhatsApp;
 	Help help;
+	private static String userId;
+	private static String password;
+	private static String yob;
 	public LoginPage(WebDriver driver) {
 
 		super(driver);
@@ -66,6 +69,7 @@ public class LoginPage extends SeleniumCoder {
 	public void loginExecution(String scenario, LatestLoginModel loginModelObject, WebDriver loginDriver) {
 		// driver=browserLaunch(scenario);
 		LoginTestModel loginTestModel=null;
+		loginData(scenario,loginModelObject);
 		if (!loginModelObject.getModule().equalsIgnoreCase("login")) {
 			loginDriver=loginCodeExecution(scenario, loginModelObject);
 		} else {
@@ -428,6 +432,34 @@ public class LoginPage extends SeleniumCoder {
 		}
 	}
 	
+	public void loginData(String scenario, LatestLoginModel loginModelObject) {
+		Reporter.log("====> loginData <====", true);
+		if(!scenario.equalsIgnoreCase("Partial Order")) {
+		userId=loginModelObject.getUserId();
+		password= loginModelObject.getPassword();
+		yob= loginModelObject.getYob();
+		}
+		loginModelObject.setUserId(dataScenarioWise(scenario,userId));
+		loginModelObject.setPassword(dataScenarioWise(scenario,password));
+		loginModelObject.setYob(dataScenarioWise(scenario,yob));
+	}
 	
+	public String dataScenarioWise(String scenario,String input) {
+		String output="No";
+		String [] array=help.commaSeparator(input);
+		if(array.length>2) {
+			array[1]=array[2];
+		}
+		if(scenario.equalsIgnoreCase("Partial Order")) {
+			if(array.length>1) 
+			output=array[1];
+			else
+				output=array[0];	
+		}else
+				output=array[0];
+		
+			
+		return output;
+	}
 	
 }

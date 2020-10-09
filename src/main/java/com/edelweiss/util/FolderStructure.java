@@ -22,7 +22,7 @@ public class FolderStructure {
 		helperObject = new HelperCode();
 		timeStamp = helperObject.timeStampGenerator();
 	}
-	public String[] reportFolderCreator() throws IOException {
+	public String[] reportFolderCreator(){
 		Reporter.log("Folder Structure creation method ", true);
 		Reporter.log("orderNo ===> "+orderNo, true);
 		String outputFile="FolderStructure not able give outputFile";

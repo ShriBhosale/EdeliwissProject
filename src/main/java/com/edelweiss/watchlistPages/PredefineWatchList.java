@@ -194,7 +194,7 @@ public class PredefineWatchList extends SeleniumCoder{
 		scriptList=multipleElementLocator("//*[@id=\"contentCntr\"]/div/div/div[1]/div[3]/div/div/div/div/div[2]/div/div[1]/div[1]/a", "Script list");
 		scriptCount=String.valueOf(scriptList.size());
 		Reporter.log("Script count : "+scriptCount, true);
-		scriptNameArray = help.commaSeparater(model.getVerifyScript());
+		scriptNameArray = help.commaSeparator(model.getVerifyScript());
 		 scriptCountInt = scriptList.size() + 2;
 		for (int i = 2; i < scriptCountInt; i++) {
 			scriptNameLabel = fluentWaitCodeXpath("//*[@id=\"contentCntr\"]/div/div/div[1]/div[3]/div/div/div/div/div[2]/div["+i+"]/div[1]/div[1]/a","Script Name");
@@ -321,7 +321,7 @@ public class PredefineWatchList extends SeleniumCoder{
 	
 	public List<String> clickAnyOption(WatchListModel model) {
 		Reporter.log("====> clickAnyOption  <=====", true);
-		predefineWatchListArray=help.commaSeparater(model.getWatchListName());
+		predefineWatchListArray=help.commaSeparator(model.getWatchListName());
 		
 		for(String predefineWatchList:predefineWatchListArray) {
 			

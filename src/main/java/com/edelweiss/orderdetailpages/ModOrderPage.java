@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
+import com.opencsv.CSVWriter;
 import com.edelweiss.model.TestDataModel;
 import com.edelweiss.util.ApacheCode;
 import com.edelweiss.util.ConfigReader;
@@ -16,7 +17,6 @@ import com.edelweiss.util.CsvReaderCode;
 import com.edelweiss.util.ExtendReporter;
 import com.edelweiss.util.HelperCode;
 import com.edelweiss.util.SeleniumCoder;
-import com.opencsv.CSVWriter;
 
 public class ModOrderPage extends SeleniumCoder {
 
@@ -40,7 +40,9 @@ public class ModOrderPage extends SeleniumCoder {
 	}
 
 	public HashMap<WebDriver,String> modExecution(TestDataModel model, WebDriver driver,int orderNo,String newOrderStatus) throws InterruptedException, IOException {
+		Reporter.log("===============> modExecution <=================", true);
 		Reporter.log("<===@@@ OrderNo in Sheet "+model.getOrderNo()+" Action : "+model.getAction()+" @@@@===>",true);
+		
 		HashMap<WebDriver,String> mapObject=new HashMap<WebDriver,String>();
 		CsvReaderCode csvReader=new CsvReaderCode();
 		HelperCode helperObject=new HelperCode();
@@ -57,7 +59,7 @@ public class ModOrderPage extends SeleniumCoder {
 
 		}
 		
-		modifyLink =fluentWaitCodeXpath(driver,"//*[@id=\"rightScroll1\"]/div[6]/div[1]/div[2]/div[6]/div/ul/li[1]/a","Modify link");
+		modifyLink =fluentWaitCodeXpath(driver,"//*[@id=\"rightScroll1\"]/div[6]/div[1]/div[2]/div[6]/div/ul/li[1]/a","Modify Link");
 		clickElement(modifyLink,"Modify link");
 		//Thread.sleep(5000);
 		if(model.getScenario().equalsIgnoreCase("Modification Qty")) {
@@ -77,9 +79,10 @@ public class ModOrderPage extends SeleniumCoder {
 				clickElement(cnsRadioButton,"CNC Radio Button");
 		}
 
-		OptionalFieldsLabel =fluentWaitCodeXpath(driver,"//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div/div[2]/div/form/div[2]/div[3]/div[1]/div[1]","Optional Fields Label");
+		OptionalFieldsLabel =fluentWaitCodeXpath(driver,"//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div[1]/div/div[2]/div/form/div[2]/div[3]/div[1]/div[1]","Optional Fields Label");
 		clickElement(OptionalFieldsLabel,"Optional Fields Label");
 		//Thread.sleep(2000);
+		
 		detail.amoCheckbox(amoFlag);
 		placeOrderButton =fluentWaitCodeXpath(driver,"//input[@value ='Place Order']","Place Order Button");
 		clickElement(placeOrderButton,"Place Order Button");

@@ -7,13 +7,14 @@ import java.util.Iterator;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
+import com.opencsv.CSVWriter;
 import com.edelweiss.model.LoginModel;
+import com.edelweiss.model.OrderDetailLoginModel;
 import com.edelweiss.model.TestDataModel;
 import com.edelweiss.util.CsvReaderCode;
 import com.edelweiss.util.ExtendReporter;
 import com.edelweiss.util.HelperCode;
 import com.edelweiss.util.SeleniumCoder;
-import com.opencsv.CSVWriter;
 
 public class OrderAction extends SeleniumCoder{
 
@@ -27,7 +28,7 @@ public class OrderAction extends SeleniumCoder{
 	ExtendReporter reporter;
 	String [] orderDetailArray;
 	//CSVWriter writer;
-	private String newOrderStatus="rejected";
+	private String newOrderStatus="Open";
 	NewOrderPage newOrder;
 	ModOrderPage modOrder;
 	CxlOrderPage cxlOrder;
@@ -39,18 +40,15 @@ public class OrderAction extends SeleniumCoder{
 	int orderNo=0;
 	private CSVWriter writer;
 	private HashMap<WebDriver,String> newMapObject,mapObject;
-	String testScenario;
-	TestDataModel testDataModel;
 	
-	public OrderAction(WebDriver driver,String loginReferNo) throws IOException {
+	public OrderAction(WebDriver driver) throws IOException {
 		super(driver);
 		this.driver=driver;
-		this.testScenario = loginReferNo;
 		newOrder=new NewOrderPage(driver);
 		modOrder=new ModOrderPage(driver);
 		cxlOrder=new CxlOrderPage(driver);
 		CsvReaderCode csvReaderObj=new CsvReaderCode();
-		testDataModel=csvReaderObj.testDataProvider(testScenario);
+		csvTestDataModelIterator=csvReaderObj.testDataProvider();
 		partialOrderOb=new PartialOrderPage(driver);
 		newMapObject=new HashMap<WebDriver,String>();
 		mapObject=new HashMap<WebDriver,String>();
@@ -58,25 +56,24 @@ public class OrderAction extends SeleniumCoder{
 		loginPageObj=new LoginPage(driver);
 	}
 	
-
-	public WebDriver orderActionStart(LoginModel loginModel) throws InterruptedException, IOException {
-
+	public WebDriver orderActionStart(OrderDetailLoginModel loginModel) throws InterruptedException, IOException {
 		//WebDriver driver=loginPageObj.driver;
 		Reporter.log("<========OrderActionStart=======>",true);
-		
+		Reporter.log(loginModel.toString(),true);
 		while (csvTestDataModelIterator.hasNext() &&(driver!=null)) {
 			model = csvTestDataModelIterator.next();
+			Reporter.log("Test Data=====================================>>>>>>>>>>>>>>>>>>>>>>>>>> "+model, true);
 			orderNo++;
 			int startExecution=Integer.valueOf(loginModel.getStartingRowNo());
 			int endExecution=Integer.valueOf(loginModel.getEndRowNo());
 			Reporter.log("endExecution ================================@> "+endExecution+"\nOrderNo ==========@> "+orderNo,true);
 			
-			if(orderNo>=endExecution+1)
+			if(orderNo>=endExecution+1) {
+				Reporter.log("OrderNo =@@@@@@@@@@@@@@> "+orderNo+"\nendExecution =@@@@@@@@@@@@@@@@@> "+endExecution, true);
 				break;
+			}
 			if(orderNo>=startExecution) {
-				
-				/* if(orderNo==startExecution) { rowNo=0; } */
-				  
+  
 				  rowNo++;
 				 
 				  Reporter.log("Order No ========================@> "+orderNo+"\nStartExecutionNo =======================@> "+startExecution,true);
@@ -85,10 +82,8 @@ public class OrderAction extends SeleniumCoder{
 				
 				if(!newOrderStatus.equalsIgnoreCase("rejected")||newOrderStatus.equalsIgnoreCase("put order req received")){
 				partialOrderOb.partialOrderExecution(model, orderNo,loginModel);
-				partialOrderOb.orderDetail(driver, model,orderNo);
-				model = csvTestDataModelIterator.next();
-				orderNo++;
-				orderNo++;
+				partialOrderOb.orderDetail(driver,model,orderNo);
+				
 			}else 
 				Reporter.log("Partial Order but new order status rejected",true);
 				continue;

@@ -18,6 +18,7 @@ import com.edelweiss.model.FundTransferModel;
 import com.edelweiss.model.LoginModel;
 import com.edelweiss.model.LoginTestModel;
 import com.edelweiss.model.MasterTestModel;
+import com.edelweiss.model.OrderDetailLoginModel;
 import com.edelweiss.model.TestDataModel;
 import com.edelweiss.model.WatchListModel;
 import com.opencsv.CSVReader;
@@ -50,7 +51,7 @@ public class CsvReaderCode {
 
 	public TestDataModel testDataProvider(String loginReferNo) {
 		ConfigReader configReader=new ConfigReader();
-		String testDataPath=configReader.configReader("TestData")+"\\ScenarioData";
+		String testDataPath=configReader.configReader("TestData")+"\\OrderDetailsData";
 		CSVReader reader = null;
 		System.out.println("Test Data ======> "+testDataPath);
 		try {
@@ -71,17 +72,25 @@ public class CsvReaderCode {
 		return null;
 	}
 	
-	//Order Detail FrameWork it it neccessary
-	/*
-	 * public int noRowInTestData(String loginReferNo) { System.out.
-	 * println("****************************************Number no counting start***************************************************"
-	 * ); TestDataModel m1; int i=0; Iterator<TestDataModel>
-	 * csvTestDataModelIterator=testDataProvider(); while
-	 * (csvTestDataModelIterator.hasNext()) { m1=csvTestDataModelIterator.next();
-	 * i++; }
-	 * 
-	 * return i; }
-	 */
+	public Iterator<TestDataModel> testDataProvider() {
+		ConfigReader configReader=new ConfigReader();
+		String testDataPath=configReader.configReader("TestData")+"\\OrderDetailsData";
+		CSVReader reader = null;
+		System.out.println("Test Data ======> "+testDataPath);
+		try {
+			reader = new CSVReader(new FileReader(testDataPath+".txt"), '\t');
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CsvToBean<TestDataModel> csvToBean = new CsvToBeanBuilder(reader).withType(TestDataModel.class).build();
+
+		Iterator<TestDataModel> csvTestDataModelIterator = csvToBean.iterator();
+		
+		
+		return csvTestDataModelIterator;
+	}
 
 	public void WriteFile(String[] orderDetailArray,CSVWriter writer) {
 
@@ -268,5 +277,31 @@ public class CsvReaderCode {
 		
 		
 		return csvWatchListTestIterator;
+	}
+	
+	public ArrayList<OrderDetailLoginModel> LoginFileReaderOD() {
+		ConfigReader configReader=new ConfigReader();
+		String testDataPath=configReader.configReader("TestData")+"\\ExecutionOrderDetail";
+		CSVReader reader = null;
+		System.out.println("Login Test Data ======> "+testDataPath);
+		try {
+			reader = new CSVReader(new FileReader(testDataPath+".txt"), '\t');
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CsvToBean<OrderDetailLoginModel> csvToBean = new CsvToBeanBuilder(reader).withType(OrderDetailLoginModel.class).build();
+		ArrayList<OrderDetailLoginModel> arrayListObject=new ArrayList<OrderDetailLoginModel>();
+		Iterator<OrderDetailLoginModel> csvTestDataModelIterator = csvToBean.iterator();
+		
+		  while(csvTestDataModelIterator.hasNext()) {
+			  OrderDetailLoginModel some=csvTestDataModelIterator.next(); 
+			  arrayListObject.add(some);
+		 // System.out.println(some.toString());
+		  }
+		 
+		return arrayListObject;
+	
 	}
 }

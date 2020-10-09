@@ -1147,13 +1147,16 @@ public class SeleniumCoder extends ExceptionHandler {
 	
 	public void staticWait(int timeout) {
 		try {
-			int gobalWait=Integer.valueOf(configReader.configReader("StaticWait"));
-			Thread.sleep(timeout+gobalWait);
+			
+			Thread.sleep(timeout);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 
 	public int noTabs(WebDriver driver) {
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());

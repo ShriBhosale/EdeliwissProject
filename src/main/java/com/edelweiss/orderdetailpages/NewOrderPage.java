@@ -55,15 +55,17 @@ public class NewOrderPage extends SeleniumCoder {
 			clickElement(placeOrderButon,"Place order Link");
 		}
 	
-		placeOrderTextField=fluentWaitCodeXpath(driver,"//*[@id='tocsearch']","Place Order Textfield");
-		sendKey(placeOrderTextField,model.getScript(),"Place Order Textfield");
+		placeOrderTextField=fluentWaitCodeXpath(driver,"//a[text()='Place Order']//following::input","Place Order Textfield");
+		if(elementPresentOrNot(placeOrderTextField))
+		clearAndSendKey(placeOrderTextField,model.getScript(),"Place Order Textfield");
+		
 		//sendKeyClickOnDownArrow(placeOrderTextField,model.getScript());
 		/*Thread.sleep(3000);*/
 		if(model.getSegment().equalsIgnoreCase("NSE")) {
-		nseLink=fluentWaitCodeXpath(driver,"//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div/div[1]/div[1]/div/div/div/div[1]/div/div/ul/li[1]/a/span[2]","NSE Link");
+		nseLink=fluentWaitCodeXpath(driver,"//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div[1]/div/div[1]/div[1]/div/div/div/div[1]/div/div/ul/li[1]/a/span[2]","NSE Link");
 		clickElement(nseLink,"NSE Link");
 		}else if(model.getSegment().equalsIgnoreCase("BSE")) {
-		bseLink=fluentWaitCodeXpath(driver, "//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div/div[1]/div[1]/div/div/div/div[1]/div/div/ul/li[1]/a/span[2]","BSE Link");
+		bseLink=fluentWaitCodeXpath(driver, "//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div[1]/div/div[1]/div[1]/div/div/div/div[1]/div/div/ul/li[2]/a/span[2]","BSE Link");
 		clickElement(bseLink,"BSE Link");
 		}
 		
@@ -82,7 +84,8 @@ public class NewOrderPage extends SeleniumCoder {
 		
 		Thread.sleep(2000);
 		productType(driver, model.getProductType());
-		noOfSharesTextField=fluentWaitCodeXpath(driver,"//input[@placeholder='No. of Shares']","NO of shares textfield");
+		noOfSharesTextField=fluentWaitCodeXpath(driver,"//input[@placeholder='No. of Shares']","No of shares Textfield");
+		
 		if(model.getScenario().equalsIgnoreCase("Partial Order")) {
 			clearAndSendKey(noOfSharesTextField,model.getQtyMod(),"No of shares Textfield (Mod Qty)");
 		}else
@@ -91,7 +94,7 @@ public class NewOrderPage extends SeleniumCoder {
 		enterPriceTextField=fluentWaitCodeXpath(driver,"//input[@placeholder='Enter Price']","Enter Price TextField");
 		sendKey(enterPriceTextField, model.getOrderPrice(),"Enter Price TextField");
 		
-		OptionalFieldsLabel=fluentWaitCodeXpath(driver,"//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div/div[2]/div/form/div[2]/div[3]/div[1]/div[1]","OptionalFields Label");
+		OptionalFieldsLabel=fluentWaitCodeXpath(driver,"//*[@id=\"myModal\"]/div/div/div[3]/div[2]/div[1]/div/div[2]/div/form/div[2]/div[3]/div[1]/div[1]","OptionalFields Label");
 		clickElement(OptionalFieldsLabel,"OptionalFields Label");
 		/*Thread.sleep(1000);*/
 		
@@ -100,7 +103,7 @@ public class NewOrderPage extends SeleniumCoder {
 		clickElement(placeOrderButton,"Place Order Button");
 		
 		try {
-		confirmButton=fluentWaitCodeXpath(driver,"//input[@value='Confirm']",30,"Place Order Button");
+		confirmButton=fluentWaitCodeXpath(driver,"//input[@value='Confirm']",30,"confirm button");
 		}catch(Exception e) {
 			clickElement(placeOrderButton,"Place Order Button");
 		}
@@ -119,14 +122,14 @@ public class NewOrderPage extends SeleniumCoder {
 	public void productType(WebDriver driver,String productTypeStr) {
 		Reporter.log("This is product type ====> "+productTypeStr,true);
 		if(productTypeStr.equalsIgnoreCase("CNC")) {
-			productTypeRadioButton=fluentWaitCodeXpath(driver,"//label[text()='Delivery CNC']", "CNS Product type");
+			productTypeRadioButton=fluentWaitCodeXpath(driver,"//label[text()='Delivery CNC']","CNS Product type");
 			selectRadioButton(productTypeRadioButton, "CNS Product type");
 		}else if(productTypeStr.equalsIgnoreCase("MTF")) {
-			productTypeRadioButton=fluentWaitCodeXpath(driver,"//label[text()='Margin Trading MTF']", "MTF Product type");
+			productTypeRadioButton=fluentWaitCodeXpath(driver,"//label[text()='Margin Trading MTF']","MTF Product type");
 			selectRadioButton(productTypeRadioButton, "MTF Product type");
 		}else if(productTypeStr.endsWith("NRML")) {
-			productTypeRadioButton=fluentWaitCodeXpath(driver, "//label[text()='Delivery Plus -  NRML']", "NRML Product type");
-			selectRadioButton(productTypeRadioButton, "NRML Product type");
+			productTypeRadioButton=fluentWaitCodeXpath(driver, "//label[text()='Delivery Plus -  NRML']","NRML Product type");
+			selectRadioButton(productTypeRadioButton,"NRML Product type");
 		}
 	}
 	

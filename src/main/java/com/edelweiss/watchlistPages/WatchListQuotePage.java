@@ -85,8 +85,8 @@ public class WatchListQuotePage extends SeleniumCoder {
 	
 	public List<String> equityCodePageVerification(List<String> codePageDetailList,WatchListModel model) {
 		Reporter.log("=====> equityCodePageVerification <=====", true);
-		verifyScriptArray=help.commaSeparater(model.getVerifyScript());
-		String [] fullScriptNameArray=help.commaSeparater(model.getFullScriptName());
+		verifyScriptArray=help.commaSeparator(model.getVerifyScript());
+		String [] fullScriptNameArray=help.commaSeparator(model.getFullScriptName());
 		staticWait(500);
 		sharePriceLabel=fluentWaitCodeXpath("//h1[@class='comp_name ib ng-binding']", "Share Price label");
 		sharePriceCompanyName=fetchTextFromElement(sharePriceLabel);
@@ -177,7 +177,7 @@ public class WatchListQuotePage extends SeleniumCoder {
 			codePageDetailList.add("Script  : "+model.getScriptName());
 			staticWait(1000);
 			codePageDetailList.add(ScreenshortProvider.captureScreen(driver, "CodePageCoScreenshot_0","Watchlist"));
-			String [] fullScriptName=help.commaSeparater(model.getFullScriptName());
+			String [] fullScriptName=help.commaSeparator(model.getFullScriptName());
 			scriptArray=WatchListPage.scriptArray;
 			scriptNameCoLabel=fluentWaitCodeXpath("//*[@id=\"commodity-overview\"]/div/h1","Script Name");
 			if(scriptNameCoLabel!=null) {
@@ -224,7 +224,7 @@ public class WatchListQuotePage extends SeleniumCoder {
 		
 		public List<String> codePageExecution(List<String> codePageDetailList,WatchListModel model) {
 			Reporter.log("====> codePageExecution <====", true);
-			verifyScriptArray = help.commaSeparater(model.getVerifyScript());
+			verifyScriptArray = help.commaSeparator(model.getVerifyScript());
 			switchTab(1);
 			watchListCommon.pageVerify(model, "codingPage");
 			staticWait(2000);

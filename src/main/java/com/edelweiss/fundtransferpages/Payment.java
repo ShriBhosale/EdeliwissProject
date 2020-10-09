@@ -191,7 +191,7 @@ public class Payment extends SeleniumCoder{
 		  for(String transferDetailStr:transferDetailList) {
 			  transferInfoList.add(help.removeSpanHtmlTag(transferDetailStr)); 
 		  }
-		 String [] dateArray=help.commaSeparater(transferInfoList.get(0));
+		 String [] dateArray=help.commaSeparator(transferInfoList.get(0));
 		detailList.add(help.separeComparePrintApp(dateArray[0], dateFunction.dataProvider()));
 		detailList.add(help.separeComparePrintApp(transferInfoList.get(1), model.getAmount()));
 		detailList.add(help.separeComparePrintApp(transferInfoList.get(2), fundTransferCommon.verifAccountNo(accountNo,model.getBank())));
@@ -278,7 +278,7 @@ public class Payment extends SeleniumCoder{
 		  for(String transferDetailStr:transferDetailList) {
 			  transferInfoList.add(help.removeSpanHtmlTag(transferDetailStr)); 
 		  }
-		 String [] dateArray=help.commaSeparater(transferInfoList.get(0));
+		 String [] dateArray=help.commaSeparator(transferInfoList.get(0));
 		detailList.add(help.separeComparePrintApp(dateArray[0], dateFunction.dataProvider()));
 		detailList.add(help.separeComparePrintApp(transferInfoList.get(1), model.getAmount()));
 		detailList.add(help.separeComparePrintApp(transferInfoList.get(2), fundTransferCommon.verifAccountNo(accountNo,model.getBank())));
@@ -350,7 +350,7 @@ public class Payment extends SeleniumCoder{
 		for(WebElement element:transferStatusElementList) {
 			transferStatusList.add(getValueFromAttribute(element, "value","Transer Status Element"));
 		}
-		String [] dateArray=help.commaSeparater(dateFunction.dataProvider());
+		String [] dateArray=help.commaSeparator(dateFunction.dataProvider());
 		if(!referNo.equalsIgnoreCase("Not")) {
 		detailList.add("Date & time: "+help.commpareTwoString(transferStatusList.get(0), dateArray[0]));
 		
@@ -419,7 +419,7 @@ public class Payment extends SeleniumCoder{
 
 	private void payementForCitibank(String accountNo,FundTransferModel model,String optionAfterTransfer) {
 		Reporter.log("===> payementForCitibank <===", true);
-		String [] exprieDate=help.commaSeparater(model.getExpireDate());
+		String [] exprieDate=help.commaSeparator(model.getExpireDate());
 		cardEnterNo(model.getDebitCardNo());
 		expiryDate(model.getExpireDate());
 		detailList.add(ScreenshortProvider.captureScreen(driver, "NativeCitiBank","FundTransfer"));
@@ -450,7 +450,7 @@ public class Payment extends SeleniumCoder{
 	
 	public void expiryDate(String expireDate) {
 		Reporter.log("===> expiryDate <===", true);
-		String [] expireDateArray=help.commaSeparater(expireDate);
+		String [] expireDateArray=help.commaSeparator(expireDate);
 		monthDropDownStr="//div[@id='CITI_CREDIT_DIV']//select[@name='HtmlMonth']//option[@value='0"+expireDateArray[0]+"']";
 		yearDropDownStr="//div[@id='CITI_CREDIT_DIV']//select[@name='HtmlYear']//option[@value="+expireDateArray[1]+"]";
 		monthDropDown=fluentWaitCodeXpath(monthDropDownStr, expireDateArray[0]+" month");

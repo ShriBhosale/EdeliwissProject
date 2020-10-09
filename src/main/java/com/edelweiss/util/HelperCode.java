@@ -11,6 +11,8 @@ import org.testng.Reporter;
 
 import com.edelweiss.FunctionKeyword;
 import com.edelweiss.MyTestLauncher;
+import com.edelweiss.OrderDetailFunction;
+import com.edelweiss.OrderDetailTestLauncher;
 import com.edelweiss.model.TestDataModel;
 import com.edelweiss.model.WatchListModel;
 import com.edelweiss.orderdetailpages.OrderDetail;
@@ -119,7 +121,7 @@ public class HelperCode {
 		Reporter.log("*************<<<<<<<<<<<<Helper class : Output Processor Started>>>>>>>>>>>>>>>>****************",true);
 		Reporter.log("====<<<<< OrderNo in Sheet "+model.getOrderNo()+" Action : "+model.getAction()+" >>>>>====",true);
 		executionCount++;
-		folderPathArray=MyTestLauncher.reportFolderPath;
+		folderPathArray=OrderDetailTestLauncher.reportFolderPath;
 		Reporter.log("FolderCreation array form FunctionKeyword class ===> "+folderPathArray,true);
 		
 		boolean reportFlag=false;
@@ -152,12 +154,12 @@ public class HelperCode {
 			CsvReaderCode reader=new CsvReaderCode();
 		//	noRowInTestData1=reader.noRowInTestData();
 			FolderStructure folderStructureObject=new FolderStructure();
-			folderStructureObject.copyFile(folderPathArray[0],"ScenarioData");
+			folderStructureObject.copyFile(folderPathArray[0],"OrderDetailsData");
 		 //excelWriter=new ApacheCode(folderPathArray[0]);
-		 FunctionKeyword.apacheCodeObj.outputFileWriterHeader(folderPathArray[0],"ScenarioData",15);
+			OrderDetailFunction.apacheCodeObj.outputFileWriterHeader(folderPathArray[0],"OrderDetailsData",15);
 		}
 		OrderDetail orderDetailObj = new OrderDetail(driver);
-		orderDetailArray = orderDetailObj.orderDetailProvider(driver, action,model.getOrderNo(),modelW);
+		orderDetailArray = orderDetailObj.orderDetailProvider(driver, action,model.getOrderNo());
 		
 		Reporter.log("OutSide orderDetailProvider method......",true);
 		orderDetailArray[0] = String.valueOf(orderNo);
@@ -182,7 +184,7 @@ public class HelperCode {
 		orderDetailArray[16] = pathArray[0];
 		orderDetailArray[17] = pathArray[1];
 		report.logFlush();
-		FunctionKeyword.apacheCodeObj.outputFileWriter(orderDetailArray, orderNo,15);
+		OrderDetailFunction.apacheCodeObj.outputFileWriterOD(orderDetailArray, orderNo,15);
 		//excelWriter.excelWriter(orderDetailArray, orderNo);
 		for(String orderDetail:orderDetailArray)
 			Reporter.log(orderDetail,true);
@@ -194,7 +196,7 @@ public class HelperCode {
 		orderDetailArray[2]="New order reject1";
 		report.logFlush();
 		
-		FunctionKeyword.apacheCodeObj.outputFileWriter(orderDetailArray, orderNo,15);
+		OrderDetailFunction.apacheCodeObj.outputFileWriterOD(orderDetailArray, orderNo,15);
 		//noRowInTestData=orderNo;
 		}
 		//report.tearDown(resultString);
@@ -232,7 +234,7 @@ public class HelperCode {
 			if(excelFileClose==false) {
 				
 				//FunctionKeyword.apacheCodeObj.closeExcelWriting();
-				FunctionKeyword.apacheCodeObj.outputExcelFileClose(outputFolderPath);
+				OrderDetailFunction.apacheCodeObj.outputExcelFileClose(outputFolderPath);
 		excelFileClose=true;
 			}
 		}

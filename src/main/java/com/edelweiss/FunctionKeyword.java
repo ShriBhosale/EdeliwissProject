@@ -47,7 +47,7 @@ public class FunctionKeyword {
 	LoginPage login;
 	public static WebDriver driver;
 	OrderAction orderActioObj;
-	HelperCode helperObject;
+	//HelperCode helperObject;
 	TestDataModel testDataObject;
 	MasterTestModel masterTestmodel;
 	ExtendReporter htmlReport;
@@ -80,7 +80,7 @@ public class FunctionKeyword {
 		
 		//orderActioObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
 		testDataObject = new TestDataModel();
-		helperObject = new HelperCode();
+		//helperObject = new HelperCode();
 		loginMap=new HashMap<String,ArrayList<String>>();
 		equtiyLoginList=new ArrayList<String>();
 		commodityLoginList=new ArrayList<String>();
@@ -169,7 +169,8 @@ public class FunctionKeyword {
 				break;
 
 			case "orderdetail":
-				OrderAction orderActionObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
+				//OrderAction orderActionObj = new OrderAction(driver,String.valueOf(latestLoginModel.getReferNo()));
+				OrderAction orderActionObj = new OrderAction(driver);
 				Reporter.log("Order detail functionality", true);
 				if(skipScenario==false)
 				//orderActionObj.orderActionStart(loginModelObj);
@@ -248,7 +249,7 @@ public class FunctionKeyword {
 					module.equalsIgnoreCase("login")||module.equalsIgnoreCase("watchlist")||module.equalsIgnoreCase("alertandnotification"))) {
 				ExtendReporter reporter = new ExtendReporter();
 				reporter.reporter(driver, module, MyTestLauncher.reportFolderPath,referNo);
-				helperObject.outputProcessor(driver, "newOrder", 0, "Terminate", testDataObject, 0);
+				//helperObject.outputProcessor(driver, "newOrder", 0, "Terminate", testDataObject, 0);
 			}
 			//unComment
 			//htmlReport.captureScreen(driver, MyTestLauncher.reportFolderPath[2], "beforLogout", 1);

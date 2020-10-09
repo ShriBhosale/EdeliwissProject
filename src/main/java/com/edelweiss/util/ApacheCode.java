@@ -29,29 +29,32 @@ public class ApacheCode {
 	static FileOutputStream out;
 	static XSSFSheet sheet;
 	static Sheet outputsheet;
+	
 	public static FileOutputStream fileOut=null;
-
+	SeleniumCoder seleniumCode=new SeleniumCoder();
 	HelperCode helper=new HelperCode();
+	private String hyperLinkName;
 	
 
 	public ApacheCode(String folderPathString) throws EncryptedDocumentException, IOException {
-		workbook = new XSSFWorkbook();
-		sheet = workbook.createSheet("Orders Details");
-		out = new FileOutputStream(new File(folderPathString+"/ExcelReport"+helper.timeStampGenerator()+".xlsx"),true);
-		String[] headerArray = { "Id", "Action", "Status", "Order Action", "Trading Symbol", "Product Type",
-				"Order Price", "Order Type", "User id", "Exchange", "Validity", "Nest Id","Qty","Partial Qty","Rejection Reason",
-				"ScriptResult Pass/fail", "Report link", "Screenshot link" };
-
-		Row row = sheet.createRow(0);
-		for (int i = 0; i < headerArray.length; i++) {
-
-			Cell cell = row.createCell(i);
-			cell.setCellValue(headerArray[i]);
-		}
-		
-
-		 
-	}
+		/*
+		 * workbook = new XSSFWorkbook(); sheet =
+		 * workbook.createSheet("Orders Details");
+		 * 
+		 * out = new FileOutputStream(new
+		 * File(folderPathString+"/ExcelReport"+helper.timeStampGenerator()+".xlsx"),
+		 * true); String[] headerArray = { "Id", "Action", "Status", "Order Action",
+		 * "Trading Symbol", "Product Type", "Order Price", "Order Type", "User id",
+		 * "Exchange", "Validity", "Nest Id","Qty","Partial Qty","Rejection Reason",
+		 * "ScriptResult Pass/fail", "Report link", "Screenshot link" };
+		 * 
+		 * Row row = sheet.createRow(0); for (int i = 0; i < headerArray.length; i++) {
+		 * 
+		 * Cell cell = row.createCell(i); cell.setCellValue(headerArray[i]); }
+		 * 
+		 * 
+		 * 
+		 */}
 	
 
 
@@ -296,6 +299,69 @@ public class ApacheCode {
 			//return fileOut;
 	 }
 	 
+	 public void outputFileWriterOD(String [] orderDetailArray,int rowNo,int counter){
+		 seleniumCode.staticWait(2000); 
+		 Reporter.log("Writer Order detail with link in outputExcel",true);
+		 Row row = outputsheet.getRow(rowNo);
+		 int c=15;
+		 Reporter.log("Row no : "+rowNo, true);
+
+		 if(!orderDetailArray[1].equalsIgnoreCase("Buy Partial Order")) {
+		  hyperLinkName = null;
+			
+
+		 Reporter.log("after count variable "+counter,true);
+		  hyperLinkName = null;
+		 Reporter.log("hyper link Name "+hyperLinkName,true);
+		// Reporter.log("OutputSheet object ==========>>> "+outputsheet,true);
+			//Row row1 = outputsheet.getRow(rowNo);
+			 Reporter.log("After row "+row,true);
+			if(outputsheet==null)
+				Reporter.log("Sheet object is null");
+
+			Reporter.log("Row Object ====> "+row+"\nOutputSheet Object ====> "+outputsheet,true);
+			for(int i=14;i<orderDetailArray.length;i++)
+			{
+			Cell cell = row.getCell(counter);
+			
+			if (cell == null)
+			    cell = row.createCell(counter);
+			
+			 if(i==16||i==17) {
+				 
+				if(i==16)
+					 hyperLinkName="HtmlReport";
+				 else if(i==17)
+					 hyperLinkName="Screenshot";
+				 cell.setCellValue(hyperLinkName);
+				 Hyperlink href = wb.getCreationHelper().createHyperlink(HyperlinkType.URL);
+					Reporter.log("HyperLink Path ======> "+pathStrProcces(orderDetailArray[i]),true);
+				 href.setAddress(pathStrProcces(orderDetailArray[i]));
+					cell.setHyperlink(href);
+				}else {
+					
+					cell.setCellValue(orderDetailArray[i]);
+					Reporter.log(orderDetailArray[i],true);
+				}
+			 
+			 //wb.write(fileOut);
+			counter++;
+			}
+			}else {
+				Cell cell = row.getCell(19);
+				if (cell == null)
+				    cell = row.createCell(19);
+				cell.setCellValue("PartialOrderScreenshot");
+				 Hyperlink href = wb.getCreationHelper().createHyperlink(HyperlinkType.URL);
+					Reporter.log("HyperLink Path ======> "+pathStrProcces(orderDetailArray[17]),true);
+				 href.setAddress(pathStrProcces(orderDetailArray[17]));
+					cell.setHyperlink(href);
+			}
+			
+	 
+	 }
+	 
+	 
 	 public void outputFileWriter(String [] orderDetailArray,int rowNo,int counter){
 		 try {
 			
@@ -308,7 +374,7 @@ public class ApacheCode {
 		 //int counter=15;
 		 String hyperLinkName = null;
 			Row row = outputsheet.getRow(rowNo);
-			Reporter.log("Row Object ====> "+row+"\nOutputSheet Object ====> "+outputsheet,true);
+			
 			for(int i=0;i<orderDetailArray.length;i++)
 			{
 			Cell cell = row.getCell(counter);

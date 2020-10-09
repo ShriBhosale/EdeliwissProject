@@ -18,6 +18,15 @@ public class LatestLoginModel {
 		this.segment=segment;
 	}
 	
+	public LatestLoginModel( String userId, String password, String yob,String module) {
+		super();
+		UserId = userId;
+		this.password = password;
+		this.yob = yob;
+		this.module = module;
+		
+	}
+	
 	public LatestLoginModel() {}
 
 	public int getReferNo() {

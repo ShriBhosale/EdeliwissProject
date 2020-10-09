@@ -519,15 +519,15 @@ public class WatchListExtraScenario extends SeleniumCoder {
 			
 			addScriptNameConfig=configReader.configReaderWL("AddScriptNameEQ");
 			if(addScriptNameConfig.contains(","))
-				addScriptNameConfigArray=help.commaSeparater(addScriptNameConfig);
+				addScriptNameConfigArray=help.commaSeparator(addScriptNameConfig);
 			
 			addExchangeConfig=configReader.configReaderWL("AddExchangeEQ");
 			if(addExchangeConfig.contains(","))
-				addExchangeConfigArray=help.commaSeparater(addExchangeConfig);
+				addExchangeConfigArray=help.commaSeparator(addExchangeConfig);
 			
 			addTradingSymbol=configReader.configReaderWL("AddTradingSymbolEQ");
 			if(addTradingSymbol.contains(","))
-				addTradingSymbolConfigArray=help.commaSeparater(addTradingSymbol);
+				addTradingSymbolConfigArray=help.commaSeparator(addTradingSymbol);
 			
 		}else {
 
@@ -537,15 +537,15 @@ public class WatchListExtraScenario extends SeleniumCoder {
 			
 			addScriptNameConfig=configReader.configReaderWL("AddScriptNameCO");
 			if(addScriptNameConfig.contains(","))
-				addScriptNameConfigArray=help.commaSeparater(addScriptNameConfig);
+				addScriptNameConfigArray=help.commaSeparator(addScriptNameConfig);
 			
 			addExchangeConfig=configReader.configReaderWL("AddExchangeCO");
 			if(addExchangeConfig.contains(","))
-				addExchangeConfigArray=help.commaSeparater(addExchangeConfig);
+				addExchangeConfigArray=help.commaSeparator(addExchangeConfig);
 			
 			addTradingSymbol=configReader.configReaderWL("AddTradingSymbolCO");
 			if(addTradingSymbol.contains(","))
-				addTradingSymbolConfigArray=help.commaSeparater(addTradingSymbol);
+				addTradingSymbolConfigArray=help.commaSeparator(addTradingSymbol);
 			
 		
 		}

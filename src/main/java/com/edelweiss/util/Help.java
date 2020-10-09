@@ -38,7 +38,7 @@ public class Help extends SeleniumCoder{
 		
 	}
 
-	public String [] commaSeparater(String scriptName) {
+	public String [] commaSeparator(String scriptName) {
 		
 		Reporter.log("== commaSeparater ===", true);
 		String [] scriptArray= {scriptName};
@@ -782,6 +782,12 @@ public class Help extends SeleniumCoder{
 	}
 	
 	
-	
+	public String replaceActualPath(String path) {
+		Reporter.log("replaceActualPath", true);
+		Reporter.log("Old Path name : "+path, true);
+		path.replace("../WorkingE2", "E:\\EdelweissProject\\WorkingE2");
+		Reporter.log("New Path name : "+path, true);
+		return path;
+	}
 
 }

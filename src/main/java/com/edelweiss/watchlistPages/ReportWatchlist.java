@@ -311,7 +311,7 @@ public class ReportWatchlist extends ExtendReporter{
 	
 	
 	public void tradingWithWatchList1(WatchListModel model,List<String> detail,ExtentTest test) {
-		String [] fullScriptName=help.commaSeparater(model.getFullScriptName());
+		String [] fullScriptName=help.commaSeparator(model.getFullScriptName());
 		Reporter.log("=========>> tradingWithWatchList <<============", true);
 		String [] ScriptNameArray=WatchListPage.scriptArray;
 		test.log(Status.INFO, "<b>============@@> Trading With Normal WatchList <@@============</b>");

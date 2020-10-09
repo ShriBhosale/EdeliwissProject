@@ -8,13 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
+import com.opencsv.CSVWriter;
 import com.edelweiss.model.TestDataModel;
 import com.edelweiss.util.ApacheCode;
 import com.edelweiss.util.CsvReaderCode;
 import com.edelweiss.util.ExtendReporter;
 import com.edelweiss.util.HelperCode;
 import com.edelweiss.util.SeleniumCoder;
-import com.opencsv.CSVWriter;
 
 public class CxlOrderPage extends SeleniumCoder{
 	
@@ -38,7 +38,7 @@ public class CxlOrderPage extends SeleniumCoder{
 			
 		detail=new OrderDetail(driver);
 		/*Thread.sleep(7000);*/
-		cxlLink=fluentWaitCodeXpath(driver,"//*[@id=\"rightScroll1\"]/div[6]/div[1]/div[2]/div[6]/div/ul/li[2]/a","CXL Link");
+		cxlLink=fluentWaitCodeXpath(driver,"//*[@id=\"rightScroll1\"]/div[6]/div[1]/div[2]/div[6]/div/ul/li[2]/a","CXL link");
 		clickElement(cxlLink,"CXL link");
 		/*Thread.sleep(4000);*/
 		confirmButton=fluentWaitCodeXpath(driver,"//button[text()='Confirm']","Confirm Button");
