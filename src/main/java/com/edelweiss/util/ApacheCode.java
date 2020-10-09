@@ -133,12 +133,15 @@ public class ApacheCode {
 	
 	public String pathStrProcces(String pathStr) {
 		String str=null;
+		
+		if(pathStr.contains("//"))
+			pathStr.replace("//","/");
 		char [] c=pathStr.toCharArray();
 		/*for(int i=0;i<pathStr.length();i++) {
 			Reporter.log(c[i]+" count "+i);
 		}*/
 		
-		String abc=pathStr.substring(12);
+		String abc=pathStr.substring(29);
 		
 		abc=".."+abc;
 		Reporter.log(abc,true);

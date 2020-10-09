@@ -39,6 +39,7 @@ import com.edelweiss.util.CsvReaderCode;
 import com.edelweiss.util.ExtendReporter;
 import com.edelweiss.util.FolderStructure;
 import com.edelweiss.util.HelperCode;
+import com.edelweiss.watchlistPages.WatchListMainExecution;
 
 
 public class FunctionKeyword {
@@ -203,11 +204,12 @@ public class FunctionKeyword {
 				break;
 				
 			case "watchlist":
-				//WatchListMainExecution watchListObj = new WatchListMainExecution(LoginExecution.loginWebDriver);
-				WatchListExecution watchListObj=new WatchListExecution(LoginExecution.loginWebDriver);
-				/* watchListObj.watchListExecute(segmentStr); */
+				WatchListMainExecution watchListObj = new WatchListMainExecution(LoginExecution.loginWebDriver);
+				//WatchListExecution watchListObj=new WatchListExecution(LoginExecution.loginWebDriver);
+				 
 				if(skipScenario==false)
-					watchListObj.watchListExecute();
+					 watchListObj.watchListExecute(segmentStr);
+					//watchListObj.watchListExecute();
 				Reporter.log("Watchlist Module", true);
 				break;
 				

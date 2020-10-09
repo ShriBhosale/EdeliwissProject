@@ -287,7 +287,11 @@ public class WatchListPage extends SeleniumCoder {
 			dropdownOptionStr = "//*[@id=\"watchlist\"]/div/div/div[2]/div[2]/div/div/div/ul[1]/li/a[text()='"
 					+ model.getScriptName() + " (" + model.getExchange() + ")" + "']";
 			Reporter.log("DropDown Xpath : "+dropdownOptionStr, true);
-		} else {
+		}if (model.getExchange().equalsIgnoreCase("CDS") || model.getExchange().equalsIgnoreCase("BSE")) {
+			dropdownOptionStr = "//*[@id=\"watchlist\"]/div/div/div[2]/div[2]/div/div/div/ul[1]/li[1]/a[text()='"
+					+ model.getScriptName() + "']";
+		}
+		else {
 			dropdownOptionStr = "//*[@id='watchlist']/div/div/div[2]/div[2]/div/div/div/ul/li/a[text()='"
 					+ model.getScriptName() + "']";
 
