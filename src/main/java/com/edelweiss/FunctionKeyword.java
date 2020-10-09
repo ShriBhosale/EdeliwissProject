@@ -29,18 +29,18 @@ import com.edelweiss.mypositionspages.MyPositionsExecution;
 import com.edelweiss.orderdetailpages.LoginExecution;
 import com.edelweiss.orderdetailpages.LoginPage;
 import com.edelweiss.orderdetailpages.OrderAction;
-
+import com.edelweiss.practiesWatchList.WatchListExecution;
 import com.edelweiss.seeholdingspages.SeeHoldingsExecution;
 import com.edelweiss.seemarginpages.SeeMarginExecution;
 import com.edelweiss.util.ApacheCode;
 import com.edelweiss.util.BrowserLaunch;
 import com.edelweiss.util.CsvReaderCode;
-import com.edelweiss.util.CustomListener;
+
 import com.edelweiss.util.ExtendReporter;
 import com.edelweiss.util.FolderStructure;
 import com.edelweiss.util.HelperCode;
 
-@Listeners(CustomListener.class)
+
 public class FunctionKeyword {
 
 	public static String keyWord = "no Keyword in FunctionKeyWord";

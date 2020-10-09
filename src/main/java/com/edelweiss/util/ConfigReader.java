@@ -12,10 +12,10 @@ public class ConfigReader {
 	 private Properties propertiesFM;
 	 private Properties propertiesWL;
 	 private Properties propertiesAN;
-	 private final String propertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\shreeya\\cofing.properties";
-	 private final String fundTransferpropertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\shreeya\\fundtransferpages\\fundtransfercofing.properties";
-	 private final String watchListpropertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\shreeya\\watchlistPages\\WatchListConfig.properties";
-	 private final String alertpropertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\shreeya\\alertandnotification\\AlertConfig.properties";
+	 private final String propertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\edelweiss\\cofing.properties";
+	 private final String fundTransferpropertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\edelweiss\\fundtransferpages\\fundtransfercofing.properties";
+	 private final String watchListpropertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\edelweiss\\watchlistPages\\WatchListConfig.properties";
+	 private final String alertpropertyFilePath= System.getProperty("user.dir")+"\\src\\main\\java\\com\\edelweiss\\alertandnotification\\AlertConfig.properties";
 	public  ConfigReader(){
 		 BufferedReader reader;
 		 try {
