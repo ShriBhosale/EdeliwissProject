@@ -1,0 +1,31 @@
+package com.edelweiss.mypositionspages;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import com.edelweiss.model.LoginModel;
+import com.edelweiss.orderdetailpages.LoginPage;
+import com.edelweiss.util.SeleniumCoder;
+
+public class MyPositionsExecution extends SeleniumCoder {
+
+	WebDriver driver;
+	private WebElement myPositionsTab;
+	
+	
+	public MyPositionsExecution(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		
+	}
+
+
+	public void myPositionsExecute() throws InterruptedException, IOException {
+
+
+		myPositionsTab=fluentWaitCodeXpath(driver, "//a[text()='Place Order']//following::a[text()='My Positions']","My Positions Tab");
+		clickElement(myPositionsTab, "My Position Tab");
+	}
+}
